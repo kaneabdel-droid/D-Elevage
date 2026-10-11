@@ -1,0 +1,25 @@
+// Clés de la plateforme SIGGIE elle-même (mono-marchand) — pas de gestion
+// multi-marchand ("BYOK"), donc pas de chiffrement par-tenant : ces variables
+// sont lues directement depuis l'environnement du serveur.
+
+export const bictorysApiKey = process.env.BICTORYS_API_KEY
+export const bictorysWebhookSecret = process.env.BICTORYS_WEBHOOK_SECRET
+
+// MONEROO_API_KEY : nom utilisé par D-QUINCA / D-INTRANTS / D-SCHOLAR, accepté aussi ici
+// pour qu'une même configuration Vercel fonctionne d'un produit à l'autre.
+export const monerooSecretKey = process.env.MONEROO_SECRET_KEY || process.env.MONEROO_API_KEY
+export const monerooWebhookSecret = process.env.MONEROO_WEBHOOK_SECRET
+
+export const chariowApiKey = process.env.CHARIOW_API_KEY
+export const chariowWebhookSecret = process.env.CHARIOW_WEBHOOK_SECRET
+export const chariowApiUrl = process.env.CHARIOW_API_URL || 'https://api.chariow.com/v1'
+
+export const hasBictorysKeys = Boolean(bictorysApiKey && bictorysWebhookSecret)
+export const hasMonerooKeys = Boolean(monerooSecretKey && monerooWebhookSecret)
+export const hasChariowKeys = Boolean(chariowApiKey && chariowWebhookSecret)
+
+export const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'
+
+export const maketouApiKey = process.env.MAKETOU_API_KEY
+export const maketouApiUrl = process.env.MAKETOU_API_URL || 'https://api.maketou.net'
+export const hasMaketouKeys = Boolean(maketouApiKey)
