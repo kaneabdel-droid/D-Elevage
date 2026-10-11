@@ -1,6 +1,5 @@
-// Catalogue des pages/modules D-PHARMA et des actions qu'on peut autoriser sur chacun.
-// Partagé entre l'UI de gestion des droits (admin), le middleware (accès aux pages),
-// la barre latérale et les server actions.
+// Catalogue des pages/modules D-ELEVAGE et des actions qu'on peut autoriser sur chacun.
+// Partagé entre l'UI de gestion des droits, le middleware, la barre latérale et les server actions.
 
 export type PermissionAction = 'read' | 'create' | 'update' | 'delete'
 export type PermissionMap = Record<string, PermissionAction[]>
@@ -19,25 +18,23 @@ export type PermissionModule = {
   key: string
   label: string
   group: string
-  // Préfixes d'URL couverts ; le préfixe le plus long l'emporte.
   paths: string[]
   actions: PermissionAction[]
-  // Précision affichée sous le libellé (ce que recouvre "modification", etc.)
   hint?: string
 }
 
 export const PERMISSION_MODULES: PermissionModule[] = [
   { key: 'dashboard', label: 'Tableau de bord', group: 'Général', paths: ['/dashboard'], actions: ['read'] },
-  { key: 'pos_pharma', label: 'Point de Vente (POS)', group: 'Pharmacie', paths: ['/pharmacie/pos'], actions: CRUD },
-  { key: 'stock_pharma', label: 'Gestion des Stocks', group: 'Pharmacie', paths: ['/pharmacie/stocks'], actions: CRUD },
-  { key: 'commandes_pharma', label: 'Commandes Labo', group: 'Pharmacie', paths: ['/pharmacie/commandes'], actions: CRUD },
-  { key: 'tresorerie', label: 'Trésorerie (comptes, journaux)', group: 'Finance', paths: ['/tresorerie'], actions: CRUD },
-  { key: 'imputations', label: 'Imputations', group: 'Finance', paths: ['/tresorerie/imputations'], actions: CRUD },
+  { key: 'bandes', label: 'Bandes & Volailles', group: 'Production', paths: ['/elevage/bandes'], actions: CRUD },
+  { key: 'animaux', label: 'Bovins & Ruminants', group: 'Production', paths: ['/elevage/animaux'], actions: CRUD },
+  { key: 'suivi', label: 'Suivi Quotidien & Mortalités', group: 'Production', paths: ['/elevage/suivi'], actions: CRUD },
+  { key: 'sanitaire', label: 'Santé & Latence Médicale', group: 'Sécurité Sanitaire', paths: ['/elevage/sanitaire'], actions: CRUD },
+  { key: 'stocks', label: 'Aliments & Intrants', group: 'Logistique', paths: ['/elevage/stocks'], actions: CRUD },
+  { key: 'batiments', label: 'Bâtiments & Enclos', group: 'Infrastructures', paths: ['/elevage/batiments'], actions: CRUD },
+  { key: 'finances', label: 'Finances & Ventes', group: 'Gestion', paths: ['/elevage/finances'], actions: CRUD },
   { key: 'parametres', label: 'Paramètres', group: 'Administration', paths: ['/parametres'], actions: ['read', 'update'] },
 ]
 
-// Route -> module (préfixe le plus long). null = page non soumise aux droits
-// (abonnement, support, etc. restent toujours accessibles).
 const PATH_TO_MODULE: [string, string][] = PERMISSION_MODULES.flatMap((m) =>
   m.paths.map((p) => [p, m.key] as [string, string])
 ).sort((a, b) => b[0].length - a[0].length)
@@ -49,7 +46,6 @@ export function moduleForPath(pathname: string): string | null {
   return null
 }
 
-// Valeur stockée : null/absent = accès complet. Un compte "admin" de l'officine a toujours tout.
 export function hasPermission(
   role: string | null | undefined,
   permissions: PermissionMap | null | undefined,
@@ -60,39 +56,25 @@ export function hasPermission(
   return permissions[moduleKey]?.includes(action) ?? false
 }
 
-// Élimine les modules/actions inconnus avant stockage ; "create/update/delete"
-// n'a de sens qu'avec "read" (on ne modifie pas ce qu'on ne peut pas voir).
-export function sanitizePermissions(input: unknown): PermissionMap {
-  const out: PermissionMap = {}
-  if (!input || typeof input !== 'object') return out
-  for (const m of PERMISSION_MODULES) {
-    const raw = (input as Record<string, unknown>)[m.key]
-    if (!Array.isArray(raw)) continue
-    const actions = m.actions.filter((a) => raw.includes(a))
-    if (actions.length === 0) continue
-    if (!actions.includes('read') && m.actions.includes('read')) actions.unshift('read')
-    out[m.key] = actions
-  }
-  return out
-}
-
-export function fullPermissions(): PermissionMap {
-  return Object.fromEntries(PERMISSION_MODULES.map((m) => [m.key, [...m.actions]]))
-}
-
-export function readOnlyPermissions(): PermissionMap {
-  return Object.fromEntries(PERMISSION_MODULES.map((m) => [m.key, ['read' as PermissionAction]]))
-}
-
-// Première page accessible : destination de repli quand l'accès est refusé.
-const FIRST_PAGE_ORDER: [string, string][] = [
-  ['dashboard', '/dashboard'], ['pos_pharma', '/pharmacie/pos'], ['stock_pharma', '/pharmacie/stocks'],
-  ['commandes_pharma', '/pharmacie/commandes'], ['tresorerie', '/tresorerie'], ['parametres', '/parametres'],
+const DEFAULT_FIRST_PATHS: [string, string][] = [
+  ['dashboard', '/dashboard'],
+  ['bandes', '/elevage/bandes'],
+  ['animaux', '/elevage/animaux'],
+  ['suivi', '/elevage/suivi'],
+  ['sanitaire', '/elevage/sanitaire'],
+  ['stocks', '/elevage/stocks'],
+  ['batiments', '/elevage/batiments'],
+  ['finances', '/elevage/finances'],
+  ['parametres', '/parametres'],
 ]
 
-export function firstAllowedPath(role: string | null | undefined, permissions: PermissionMap | null | undefined): string {
-  for (const [key, path] of FIRST_PAGE_ORDER) {
-    if (hasPermission(role, permissions, key, 'read')) return path
+export function firstAllowedPath(
+  role: string | null | undefined,
+  permissions: PermissionMap | null | undefined
+): string {
+  if (role === 'admin' || !permissions) return '/dashboard'
+  for (const [moduleKey, path] of DEFAULT_FIRST_PATHS) {
+    if (hasPermission(role, permissions, moduleKey, 'read')) return path
   }
-  return '/support'
+  return '/dashboard'
 }

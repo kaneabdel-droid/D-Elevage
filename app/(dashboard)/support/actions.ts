@@ -36,7 +36,7 @@ export async function sendMessage(formData: FormData) {
 
   const gie = profil.gies as unknown as { nom: string } | null
   const emailEnvoye = await transfererAuSupport({
-    produit: 'D-PHARMA',
+    produit: 'D-ÉLEVAGE',
     email: user.email,
     organisation: gie?.nom || '—',
     sujet,

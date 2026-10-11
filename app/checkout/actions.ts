@@ -37,18 +37,17 @@ export async function initiateSubscriptionPayment(
 
   const { data: userData } = await supabase
     .from('utilisateurs')
-    .select('gie_id, gies(subscription_tier, devise, pays)')
+    .select('entreprise_id, entreprises(subscription_tier, devise, code_pays)')
     .eq('id', user.id)
     .single()
 
-  if (!userData?.gie_id) {
-    return { ok: false, error: 'Pharmacie introuvable' }
+  if (!userData?.entreprise_id) {
+    return { ok: false, error: 'Exploitation introuvable' }
   }
 
-  const gie = Array.isArray(userData.gies) ? userData.gies[0] : userData.gies
-  const currentTier = gie?.subscription_tier || 'standard'
-  // Pharmacie d'un autre pays (devise « sans unité ») : abonnement payé par carte, en dollars US.
-  const enDollars = gie?.devise === 'AUCUNE'
+  const entreprise = Array.isArray(userData.entreprises) ? userData.entreprises[0] : userData.entreprises
+  const currentTier = entreprise?.subscription_tier || 'standard'
+  const enDollars = entreprise?.devise === 'USD'
   if (enDollars && moyenPaiement !== 'carte') {
     return { ok: false, error: 'Depuis votre pays, l’abonnement se paie par carte bancaire en dollars US' }
   }
@@ -108,24 +107,24 @@ export async function initiateSubscriptionPayment(
     const { count } = await supabase
       .from('abonnement_paiements')
       .select('id', { count: 'exact', head: true })
-      .eq('gie_id', userData.gie_id)
+      .eq('gie_id', userData.entreprise_id)
       .eq('niveau', planId)
       .eq('statut', 'completed')
       .eq('doublon', false)
     if (count) {
-      return { ok: false, error: `Votre pharmacie est déjà abonnée au forfait ${planId} : aucun nouveau paiement n'est nécessaire.` }
+      return { ok: false, error: `Votre exploitation est déjà abonnée au forfait ${planId} : aucun nouveau paiement n'est nécessaire.` }
     }
   }
 
   // Anti double paiement (2/2) : relancer la même offre renvoie vers le paiement déjà
   // ouvert au lieu d'en créer un second (double clic, second onglet, retour arrière).
-  const reutilisable = await paiementEnCoursReutilisable(supabase, userData.gie_id, planId, moyenPaiement, montant)
+  const reutilisable = await paiementEnCoursReutilisable(supabase, userData.entreprise_id, planId, moyenPaiement, montant)
   if (reutilisable) return reutilisable
 
   const { data: payment, error: insertError } = await supabase
     .from('abonnement_paiements')
     .insert({
-      gie_id: userData.gie_id,
+      gie_id: userData.entreprise_id,
       niveau: planId,
       montant,
       provider,
@@ -137,24 +136,21 @@ export async function initiateSubscriptionPayment(
     .single()
 
   if (insertError || !payment) {
-    // 23505 = index unique « un paiement en cours par pharmacie » : une requête concurrente
-    // (double clic) vient d'en créer un — on renvoie celui-là.
     if (insertError?.code === '23505') {
-      const concurrent = await paiementEnCoursReutilisable(supabase, userData.gie_id, planId, moyenPaiement, montant)
+      const concurrent = await paiementEnCoursReutilisable(supabase, userData.entreprise_id, planId, moyenPaiement, montant)
       if (concurrent) return concurrent
-      return { ok: false, error: 'Un paiement est déjà en cours pour votre pharmacie. Patientez quelques secondes puis réessayez.' }
+      return { ok: false, error: 'Un paiement est déjà en cours pour votre exploitation. Patientez quelques secondes puis réessayez.' }
     }
     console.error('Erreur création paiement abonnement', insertError)
     return { ok: false, error: "Impossible d'initier le paiement" }
   }
 
   if (moyenPaiement === 'virement') {
-    // Le virement est confirmé manuellement après réception des fonds — pas d'appel prestataire.
     return { ok: true, virement: true, paymentId: payment.id }
   }
 
   const returnUrl = `${siteUrl}/checkout/retour?ref=${payment.id}`
-  const description = `Abonnement D-PHARMA — forfait ${planId}`
+  const description = `Abonnement D-ÉLEVAGE — forfait ${planId}`
 
   const result =
     provider === 'moneroo'
@@ -173,7 +169,7 @@ export async function initiateSubscriptionPayment(
             montantAttendu: montant,
             reference: payment.id,
             phoneLocal: phoneLocal || '',
-            countryCode: gie?.pays && gie.pays !== 'AUTRE' ? gie.pays : 'SN',
+            countryCode: entreprise?.code_pays && entreprise.code_pays !== 'AUTRE' ? entreprise.code_pays : 'SN',
             customerEmail: user.email || '',
             returnUrl,
           })
@@ -182,7 +178,7 @@ export async function initiateSubscriptionPayment(
               productId: maketouProductId!,
               reference: payment.id,
               phoneLocal: phoneLocal || '',
-              countryCode: gie?.pays && gie.pays !== 'AUTRE' ? gie.pays : 'SN',
+              countryCode: entreprise?.code_pays && entreprise.code_pays !== 'AUTRE' ? entreprise.code_pays : 'SN',
               customerEmail: user.email || '',
               returnUrl,
               montantAttendu: montant,

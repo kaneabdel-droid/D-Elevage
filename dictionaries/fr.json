@@ -196,9 +196,13 @@
     "parametres": "Paramètres",
     "support": "Aide & Support",
     "logout": "Déconnexion",
-    "pos_pharma": "Point de Vente",
-    "stock_pharma": "Stocks (Pharma)",
-    "commandes_pharma": "Commandes Labo"
+    "bandes": "Bandes & Volailles",
+    "animaux": "Bovins & Ruminants",
+    "suivi": "Suivi Quotidien",
+    "sanitaire": "Sécurité Sanitaire",
+    "stocks": "Aliments & Intrants",
+    "batiments": "Bâtiments & Enclos",
+    "finances": "Finances & Marges"
   },
   "header": {
     "admin": "Admin",
@@ -207,47 +211,22 @@
   },
   "dashboard": {
     "title": "Tableau de bord",
-    "welcome": "Bienvenue sur D-PHARMA. Voici un résumé de votre officine.",
+    "welcome": "Bienvenue sur D-ÉLEVAGE. Voici un résumé de votre exploitation.",
     "stats": {
-      "members": "Membres Inscrits",
-      "members_desc": "Dans la coopérative",
-      "season": "Campagne Actuelle",
-      "season_none": "Aucune",
-      "season_active": "En cours",
-      "season_done": "Terminée",
-      "repayment": "Taux de Remboursement",
-      "repayment_desc": "Sur la campagne",
-      "equipment": "Parc Matériel",
-      "equipment_link": "Voir les équipements"
+      "bandes": "Bandes Actives",
+      "animaux": "Cheptel Identifié",
+      "alertes": "Alertes Sanitaires",
+      "stocks": "Stocks d'Aliments"
     },
-    "finance": {
-      "title": "Aperçu Financier",
-      "view_journal": "Voir le journal",
-      "balance": "Solde de la Trésorerie",
-      "inflows": "Total Entrées",
-      "outflows": "Total Sorties"
-    },
-    "recent_members": {
-      "title": "Membres Récents",
-      "registered": "Inscription de",
-      "empty": "Aucun membre récent.",
-      "view_all": "Voir tous les membres"
-    },
-    "pharma_stats": {
-      "sales_today": "Ventes du jour",
-      "sales_today_desc": "Chiffre d'affaires",
-      "low_stock": "Stock Faible",
-      "low_stock_desc": "Médicaments à réapprovisionner",
-      "pending_orders": "Commandes Labo",
-      "pending_orders_desc": "En attente",
-      "expired": "Périmés ou proches",
-      "expired_desc": "À retirer des rayons"
-    },
-    "recent_sales": {
-      "title": "Dernières ventes",
-      "empty": "Aucune vente récente",
-      "pos_link": "Aller au Point de Vente",
-      "sale_of": "Ticket N°"
+    "elevage_stats": {
+      "bandes_actives": "Bandes en cours",
+      "bandes_actives_desc": "Volailles & porcins",
+      "cheptel": "Ruminants identifiés",
+      "cheptel_desc": "Suivi par boucle",
+      "latence_alerte": "Lots sous latence",
+      "latence_desc": "Délai de retrait actif",
+      "mortalite": "Taux de viabilité",
+      "mortalite_desc": "Moyenne cheptel"
     }
   },
   "membres": {
