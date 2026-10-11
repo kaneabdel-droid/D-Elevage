@@ -27,7 +27,7 @@ export default async function LandingPage() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mx-auto text-center">
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 text-primary text-xs font-semibold uppercase tracking-wider mb-6">
-              <Bird className="w-4 h-4" /> Solution Multi-espèces 100% Africaine
+              <Bird className="w-4 h-4" /> Solution Multi-espèces
             </div>
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold font-heading tracking-tight mb-6">
               Pilotez la performance et la rentabilité de votre <span className="text-primary">Élevage</span>

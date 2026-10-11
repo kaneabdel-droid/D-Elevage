@@ -146,8 +146,8 @@ export default async function GuidePage() {
       <main>
         <section className="py-14 lg:py-20 bg-gradient-to-br from-surface to-background border-b border-surface-border">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-3xl text-center">
-            <Link href="/decouvrir-dpharma" className="text-sm font-medium text-foreground-muted hover:text-primary inline-flex items-center gap-2 mb-6">
-              <ArrowLeft className="w-4 h-4 rtl:rotate-180" /> {g.meta.back}
+            <Link href="/" className="text-sm font-medium text-foreground-muted hover:text-primary inline-flex items-center gap-2 mb-6">
+              <ArrowLeft className="w-4 h-4 rtl:rotate-180" /> {g.meta?.back || "Retour à l'accueil"}
             </Link>
             <p className="text-xs font-bold uppercase tracking-widest text-primary">{g.hero.eyebrow}</p>
             <h1 className="mt-3 text-4xl md:text-6xl font-bold font-heading tracking-tight">{g.hero.title}</h1>
@@ -200,8 +200,8 @@ export default async function GuidePage() {
           {g.closing.map((s) => <SectionGuide key={s.id} s={s} g={g} />)}
 
           <div className="mt-16 text-center">
-            <Link href="/decouvrir-dpharma" className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 font-semibold text-white hover:bg-primary-hover">
-              {g.meta.back} <ArrowRight className="w-4 h-4 rtl:rotate-180" />
+            <Link href="/" className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 font-semibold text-white hover:bg-primary-hover">
+              {g.meta?.back || "Retour à l'accueil"} <ArrowRight className="w-4 h-4 rtl:rotate-180" />
             </Link>
           </div>
         </div>
