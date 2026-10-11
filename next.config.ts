@@ -1,15 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  async redirects() {
-    return [
-      {
-        source: '/demo',
-        destination: '/decouvrir-delevage',
-        permanent: false,
-      },
-    ];
-  },
+  // Pas de redirection de /demo vers une page inexistante
 };
 
 export default nextConfig;

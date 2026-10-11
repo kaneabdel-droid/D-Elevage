@@ -46,9 +46,18 @@ export default async function DemoElevagePage({
       {/* Header */}
       <header className="border-b border-surface-border bg-surface/80 backdrop-blur sticky top-0 z-20">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
-          <Link href="/" className="inline-flex items-center gap-2 text-sm font-semibold text-foreground-muted hover:text-primary transition-colors">
-            <ArrowLeft className="w-4 h-4" /> Retour à l&apos;accueil
-          </Link>
+          <div className="flex items-center gap-3">
+            <a
+              href="https://dembasolution.com"
+              title="Retour au portail Demba Solution"
+              className="inline-flex items-center gap-1.5 text-xs font-medium text-foreground-muted hover:text-primary transition-colors py-1 px-2.5 rounded-lg border border-surface-border bg-surface hover:border-primary/40 shadow-xs"
+            >
+              ← Portail Demba Solution
+            </a>
+            <Link href="/" className="inline-flex items-center gap-2 text-sm font-semibold text-foreground-muted hover:text-primary transition-colors">
+              <ArrowLeft className="w-4 h-4" /> Accueil D-Élevage
+            </Link>
+          </div>
           <div className="flex items-center gap-4">
             <LanguageSelector currentLang={locale} />
             <Link href="/login" className="text-sm font-semibold text-primary hover:underline">

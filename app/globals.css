@@ -1,19 +1,22 @@
 @import "tailwindcss";
 
 :root {
-  /* Thème D-Elevage - Élevage & Pastoralisme Ouest-Africain */
-  --background: #F4F7F4;
+  /* Thème D-Élevage - Prairie, Terre, Pastoralisme & Convivialité */
+  --background: #F8FAF7;
   --surface: #FFFFFF;
-  --foreground: #14281D;
-  --foreground-muted: #4B6354;
-  --sidebar: #EBF1EB;
+  --surface-border: #E2EADF;
+  --foreground: #1A2E22;
+  --foreground-muted: #526B5C;
+  --sidebar: #EFF5ED;
 
-  --primary: #1B5E20; /* Vert élevage / prairie */
-  --primary-hover: #2E7D32;
-  --secondary: #B45309; /* Fauve / cuir / terre */
+  --primary: #256E3B; /* Vert Prairie / Pâturage naturel chaleureux */
+  --primary-hover: #1E592F;
+  --secondary: #A0551E; /* Ocre / Cuir / Terre d'élevage */
+  --secondary-hover: #884514;
+  --accent: #E9B949; /* Or paille / Céréales */
   --danger: #DC2626; /* Rouge alerte sanitaire / latence */
-  --success: #16A34A; /* Vert santé / conforme */
-  --warning: #F59E0B; /* Orange attention traitement */
+  --success: #15803D; /* Vert santé / conforme */
+  --warning: #D97706; /* Ambre traitement en cours */
   --info: #0284C7;
 }
 
@@ -36,6 +39,7 @@
 @theme inline {
   --color-background: var(--background);
   --color-surface: var(--surface);
+  --color-surface-border: var(--surface-border);
   --color-foreground: var(--foreground);
   --color-foreground-muted: var(--foreground-muted);
   --color-sidebar: var(--sidebar);
@@ -43,6 +47,7 @@
   --color-primary: var(--primary);
   --color-primary-hover: var(--primary-hover);
   --color-secondary: var(--secondary);
+  --color-accent: var(--accent);
   --color-danger: var(--danger);
   --color-success: var(--success);
   --color-warning: var(--warning);

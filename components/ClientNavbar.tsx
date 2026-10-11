@@ -12,19 +12,29 @@ export default function ClientNavbar({ dict, currentLang }: { dict?: any, curren
     <header className="sticky top-0 z-50 w-full border-b border-surface-border bg-background/85 backdrop-blur-md">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
-          <Link href="/" className="flex items-center gap-2.5 shrink-0">
-            <span className="w-9 h-9 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
-              <Bird className="w-5 h-5" />
-            </span>
-            <div className="flex flex-col">
-              <span className="text-lg sm:text-xl font-bold font-heading text-primary leading-tight">
-                D-ÉLEVAGE
+          <div className="flex items-center gap-4">
+            <a
+              href="https://dembasolution.com"
+              title="Retour au portail Demba Solution"
+              className="inline-flex items-center gap-1.5 text-xs font-medium text-foreground-muted hover:text-primary transition-colors py-1 px-2.5 rounded-lg border border-surface-border bg-surface hover:border-primary/40 shadow-xs"
+            >
+              ← <span className="hidden sm:inline">Portail</span> Demba Solution
+            </a>
+
+            <Link href="/" className="flex items-center gap-2.5 shrink-0">
+              <span className="w-9 h-9 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
+                <Bird className="w-5 h-5" />
               </span>
-              <span className="text-[10px] text-foreground-muted -mt-0.5 tracking-wider uppercase font-semibold hidden sm:inline">
-                Demba Solution
-              </span>
-            </div>
-          </Link>
+              <div className="flex flex-col">
+                <span className="text-lg sm:text-xl font-bold font-heading text-primary leading-tight">
+                  D-ÉLEVAGE
+                </span>
+                <span className="text-[10px] text-foreground-muted -mt-0.5 tracking-wider uppercase font-semibold hidden sm:inline">
+                  Demba Solution
+                </span>
+              </div>
+            </Link>
+          </div>
 
           <nav className="hidden md:flex gap-6 items-center">
             <Link href="/#especes" className="text-sm font-medium text-foreground-muted hover:text-primary transition-colors">
