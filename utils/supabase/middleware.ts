@@ -6,8 +6,8 @@ export async function updateSession(request: NextRequest) {
     request,
   })
 
-  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://tgnqcqfynkvmocxqdxyc.supabase.co'
-  const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'sb_publishable_SCG2vuL7_fCWqG1C7yJ58Q_LYyCnDkM'
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://xglyasfikyoyimfnqyev.supabase.co'
+  const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'sb_publishable_oM-hq284H3JpOVklae13GQ_vVxUlEd8'
 
   const supabase = createServerClient(
     supabaseUrl,
