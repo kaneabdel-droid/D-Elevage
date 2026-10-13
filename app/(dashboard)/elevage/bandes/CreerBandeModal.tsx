@@ -1,6 +1,7 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { useSearchParams } from 'next/navigation'
 import { Plus, X, Bird } from 'lucide-react'
 import { creerBande } from './actions'
 
@@ -11,9 +12,16 @@ export default function CreerBandeModal({
   batiments: Array<{ id: string; nom: string }>
   especes: Array<{ code: string; nom: string }>
 }) {
+  const searchParams = useSearchParams()
   const [open, setOpen] = useState(false)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
+
+  useEffect(() => {
+    if (searchParams?.get('nouveau') === '1') {
+      setOpen(true)
+    }
+  }, [searchParams])
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()

@@ -118,10 +118,15 @@ export default async function AbonnementPage({
                 <p className="text-xs text-foreground-muted mb-6">{p.description}</p>
 
                 <div className="mb-6">
-                  <span className="text-3xl font-bold font-heading text-foreground">
-                    {p.prixMensuelFcfa.toLocaleString('fr-FR')}
-                  </span>{' '}
-                  <span className="text-xs text-foreground-muted">{devise} / mois</span>
+                  <div className="flex items-baseline gap-1">
+                    <span className="text-3xl font-bold font-heading text-foreground">
+                      {p.prixMensuelFcfa.toLocaleString('fr-FR').replace(/\s/g, '.')}
+                    </span>
+                    <span className="text-xs text-foreground-muted">{devise} / mois</span>
+                  </div>
+                  <p className="text-xs text-foreground-muted mt-1">
+                    ou <span className="font-semibold text-primary">{p.prixAnnuelFcfa.toLocaleString('fr-FR').replace(/\s/g, '.')} {devise} / an</span> (2 mois offerts)
+                  </p>
                 </div>
 
                 <div className="border-t border-surface-border/50 pt-4 mb-6">

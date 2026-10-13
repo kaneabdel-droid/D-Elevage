@@ -1,6 +1,7 @@
 import { createClient } from '@/utils/supabase/server'
 import { getTenantContext } from '@/utils/supabase/tenant'
-import { ShieldAlert, AlertTriangle, CheckCircle2, Plus, Calendar, Clock } from 'lucide-react'
+import { ShieldAlert, AlertTriangle, CheckCircle2, Plus, Calendar, Clock, Sparkles } from 'lucide-react'
+import { DEMO_TRAITEMENTS } from '@/lib/demo-data'
 
 export default async function SanitairePage() {
   const tenant = await getTenantContext()
@@ -21,8 +22,11 @@ export default async function SanitairePage() {
     supabase.from('intrants').select('id, nom, latence_jours_defaut, unite').in('categorie', ['medicament', 'vaccin'])
   ])
 
+  const isDemo = !traitements || traitements.length === 0
+  const displayTraitements = isDemo ? (DEMO_TRAITEMENTS as any[]) : traitements
+
   // Séparer les traitements avec latence en cours vs historiques
-  const traitementsEnLatence = traitements?.filter(
+  const traitementsEnLatence = displayTraitements?.filter(
     (t) => t.date_fin_latence && t.date_fin_latence >= todayStr
   ) || []
 
@@ -38,6 +42,13 @@ export default async function SanitairePage() {
           </p>
         </div>
       </div>
+
+      {isDemo && (
+        <div className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-primary/10 border border-primary/20 text-primary text-xs font-medium">
+          <Sparkles className="w-4 h-4 shrink-0" />
+          <span>Données de démonstration : suivi des délais de latence et rappels vaccinaux du cheptel.</span>
+        </div>
+      )}
 
       {/* Bannière d'état */}
       {traitementsEnLatence.length > 0 ? (

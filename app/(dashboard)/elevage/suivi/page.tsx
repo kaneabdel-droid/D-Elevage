@@ -1,7 +1,8 @@
 import { createClient } from '@/utils/supabase/server'
 import { getTenantContext } from '@/utils/supabase/tenant'
-import { Activity, Egg, Milk, Scale, AlertTriangle } from 'lucide-react'
+import { Activity, Egg, Milk, Scale, AlertTriangle, Sparkles } from 'lucide-react'
 import CreerSuiviModal from './CreerSuiviModal'
+import { DEMO_SUIVIS, DEMO_BANDES, DEMO_ANIMAUX, DEMO_INTRANTS } from '@/lib/demo-data'
 
 export default async function SuiviPage() {
   const tenant = await getTenantContext()
@@ -23,11 +24,17 @@ export default async function SuiviPage() {
     supabase.from('intrants').select('id, nom, unite').eq('categorie', 'aliment')
   ])
 
+  const isDemo = !suivis || suivis.length === 0
+  const displaySuivis = isDemo ? (DEMO_SUIVIS as any[]) : suivis
+  const displayBandes = (bandes && bandes.length > 0) ? bandes : DEMO_BANDES
+  const displayAnimaux = (animaux && animaux.length > 0) ? animaux : DEMO_ANIMAUX
+  const displayAliments = (aliments && aliments.length > 0) ? aliments : DEMO_INTRANTS.filter(i => i.categorie === 'aliment')
+
   // Cumuls rapides
-  const totalMortalites = suivis?.reduce((acc, s) => acc + (s.mortalites || 0), 0) || 0
-  const totalAlimentKg = suivis?.reduce((acc, s) => acc + (Number(s.aliment_quantite_kg) || 0), 0) || 0
-  const totalOeufs = suivis?.reduce((acc, s) => acc + (s.oeufs_recoltes || 0), 0) || 0
-  const totalLait = suivis?.reduce((acc, s) => acc + (Number(s.lait_recolte_litres) || 0), 0) || 0
+  const totalMortalites = displaySuivis?.reduce((acc, s) => acc + (s.mortalites || 0), 0) || 0
+  const totalAlimentKg = displaySuivis?.reduce((acc, s) => acc + (Number(s.aliment_quantite_kg) || 0), 0) || 0
+  const totalOeufs = displaySuivis?.reduce((acc, s) => acc + (s.oeufs_recoltes || 0), 0) || 0
+  const totalLait = displaySuivis?.reduce((acc, s) => acc + (Number(s.lait_recolte_litres) || 0), 0) || 0
 
   return (
     <div className="space-y-6">
@@ -42,11 +49,18 @@ export default async function SuiviPage() {
           </p>
         </div>
         <CreerSuiviModal
-          bandes={bandes || []}
-          animaux={animaux || []}
-          aliments={aliments || []}
+          bandes={displayBandes}
+          animaux={displayAnimaux}
+          aliments={displayAliments}
         />
       </div>
+
+      {isDemo && (
+        <div className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-primary/10 border border-primary/20 text-primary text-xs font-medium">
+          <Sparkles className="w-4 h-4 shrink-0" />
+          <span>Données de démonstration : suivi quotidien réel (ponte avicole, lactation bovine, consommations).</span>
+        </div>
+      )}
 
       {/* Cartes récapitulatives */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">

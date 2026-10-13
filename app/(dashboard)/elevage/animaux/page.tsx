@@ -1,7 +1,8 @@
 import { createClient } from '@/utils/supabase/server'
 import { getTenantContext } from '@/utils/supabase/tenant'
-import { Beef, ShieldAlert, CheckCircle2, Milk, Calendar } from 'lucide-react'
+import { Beef, ShieldAlert, CheckCircle2, Milk, Calendar, Sparkles } from 'lucide-react'
 import CreerAnimalModal from './CreerAnimalModal'
+import { DEMO_ANIMAUX, DEMO_BATIMENTS, DEMO_ESPECES } from '@/lib/demo-data'
 
 export default async function AnimauxPage() {
   const tenant = await getTenantContext()
@@ -20,6 +21,11 @@ export default async function AnimauxPage() {
     supabase.from('especes_elevage').select('code, nom').in('categorie', ['bovin', 'petit_ruminant', 'porcin']).order('nom')
   ])
 
+  const isDemo = !animaux || animaux.length === 0
+  const displayAnimaux = isDemo ? (DEMO_ANIMAUX as any[]) : animaux
+  const displayBatiments = (batiments && batiments.length > 0) ? batiments : DEMO_BATIMENTS
+  const displayEspeces = (especes && especes.length > 0) ? especes : DEMO_ESPECES
+
   return (
     <div className="space-y-6">
       {/* En-tête */}
@@ -33,15 +39,22 @@ export default async function AnimauxPage() {
           </p>
         </div>
         <CreerAnimalModal
-          batiments={batiments || []}
-          especes={especes || []}
+          batiments={displayBatiments}
+          especes={displayEspeces}
         />
       </div>
 
+      {isDemo && (
+        <div className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-primary/10 border border-primary/20 text-primary text-xs font-medium">
+          <Sparkles className="w-4 h-4 shrink-0" />
+          <span>Données de démonstration : cheptel bovin laitier et béliers Ladoum d'élite du Sahel.</span>
+        </div>
+      )}
+
       {/* Grille des animaux */}
-      {animaux && animaux.length > 0 ? (
+      {displayAnimaux && displayAnimaux.length > 0 ? (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {animaux.map((a) => {
+          {displayAnimaux.map((a) => {
             const enLatence = a.etat_sante === 'en_latence'
 
             return (

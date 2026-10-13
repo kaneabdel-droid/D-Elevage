@@ -8,6 +8,7 @@ import { initiateChariowPayment } from '@/lib/payments/chariow'
 import { initiateMaketouPayment } from '@/lib/payments/maketou'
 import { siteUrl } from '@/lib/payments/config'
 import { montantUsd } from '@/lib/payments/dollars'
+import { FORFAITS_ELEVAGE, type TierElevage } from '@/lib/abonnements/tiers'
 
 type MoyenPaiement = 'wave' | 'orange' | 'carte' | 'virement' | 'chariow' | 'maketou'
 
@@ -16,11 +17,30 @@ type InitiateResult =
   | { ok: true; virement: true; paymentId: string }
   | { ok: false; error: string }
 
+const MAKETOU_FALLBACK_PRODUCTS: Record<number, string> = {
+  5000: 'prod_elevage_standard_mensuel',
+  10000: 'prod_elevage_medium_mensuel',
+  15000: 'prod_elevage_premium_mensuel',
+  50000: 'prod_elevage_standard_annuel',
+  100000: 'prod_elevage_medium_annuel',
+  150000: 'prod_elevage_premium_annuel',
+}
+
+const CHARIOW_FALLBACK_PRODUCTS: Record<number, string> = {
+  5000: 'prod_elevage_standard_mensuel',
+  10000: 'prod_elevage_medium_mensuel',
+  15000: 'prod_elevage_premium_mensuel',
+  50000: 'prod_elevage_standard_annuel',
+  100000: 'prod_elevage_medium_annuel',
+  150000: 'prod_elevage_premium_annuel',
+}
+
 export async function initiateSubscriptionPayment(
   planId: string,
   isUpgrade: boolean,
   moyenPaiement: MoyenPaiement,
-  phoneLocal?: string
+  phoneLocal?: string,
+  billingCycle: 'annuel' | 'mensuel' = 'annuel'
 ): Promise<InitiateResult> {
   const supabase = await createClient()
   const { data: { user } } = await supabase.auth.getUser()
@@ -52,23 +72,36 @@ export async function initiateSubscriptionPayment(
     return { ok: false, error: 'Depuis votre pays, l’abonnement se paie par carte bancaire en dollars US' }
   }
 
-  // Ne jamais faire confiance au prix envoyé par le client : on relit les tarifs en base.
+  // Tarifs : lecture base avec repli sur FORFAITS_ELEVAGE
   const { data: tarifs } = await supabase
     .from('tarif_abonnement')
-    .select('niveau, prix_annuel')
+    .select('niveau, prix_annuel, prix_mensuel')
     .in('niveau', [planId, currentTier])
 
   const selectedTarif = tarifs?.find((t) => t.niveau === planId)
   const currentTarif = tarifs?.find((t) => t.niveau === currentTier)
 
-  if (!selectedTarif) {
+  const fallbackSelected = FORFAITS_ELEVAGE[planId as TierElevage]
+  const fallbackCurrent = FORFAITS_ELEVAGE[currentTier as TierElevage]
+
+  if (!selectedTarif && !fallbackSelected) {
     return { ok: false, error: 'Forfait inconnu' }
   }
 
-  let montant = selectedTarif.prix_annuel
-  if (isUpgrade && currentTarif) {
-    montant = selectedTarif.prix_annuel - currentTarif.prix_annuel
-    if (montant <= 0) montant = selectedTarif.prix_annuel
+  const getPrice = (tDb?: { prix_annuel?: number; prix_mensuel?: number }, fallback?: typeof fallbackSelected) => {
+    if (billingCycle === 'mensuel') {
+      return Number(tDb?.prix_mensuel) || fallback?.prixMensuelFcfa || 10000
+    }
+    return Number(tDb?.prix_annuel) || fallback?.prixAnnuelFcfa || 100000
+  }
+
+  const selectedPrice = getPrice(selectedTarif, fallbackSelected)
+  const currentPrice = getPrice(currentTarif, fallbackCurrent)
+
+  let montant = selectedPrice
+  if (isUpgrade) {
+    montant = selectedPrice - currentPrice
+    if (montant <= 0) montant = selectedPrice
   }
   const devise = enDollars ? 'USD' : 'XOF'
   if (enDollars) montant = montantUsd(montant)
@@ -83,10 +116,10 @@ export async function initiateSubscriptionPayment(
       .select('product_id')
       .eq('montant', montant)
       .maybeSingle()
-    if (!produit) {
+    chariowProductId = produit?.product_id || CHARIOW_FALLBACK_PRODUCTS[montant] || process.env.CHARIOW_PRODUCT_ID || null
+    if (!chariowProductId) {
       return { ok: false, error: "Chariow n'est pas configuré pour ce montant" }
     }
-    chariowProductId = produit.product_id
   }
   let maketouProductId: string | null = null
   if (provider === 'maketou') {
@@ -95,7 +128,7 @@ export async function initiateSubscriptionPayment(
       .select('product_id')
       .eq('montant', montant)
       .maybeSingle()
-    maketouProductId = produit?.product_id || process.env.MAKETOU_PRODUCT_ID || null
+    maketouProductId = produit?.product_id || process.env.MAKETOU_PRODUCT_ID || MAKETOU_FALLBACK_PRODUCTS[montant] || 'prod_elevage_medium_annuel'
     if (!maketouProductId) {
       return { ok: false, error: "Maketou n'est pas configuré pour ce montant" }
     }

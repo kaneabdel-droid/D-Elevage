@@ -7,7 +7,7 @@ import { getDictionary, getLocale } from '@/dictionaries'
 export default async function CheckoutPage({
   searchParams,
 }: {
-  searchParams: Promise<{ plan?: string, upgrade?: string }>
+  searchParams: Promise<{ plan?: string; upgrade?: string; period?: string; periode?: string }>
 }) {
   const supabase = await createClient()
   const { data: { user } } = await supabase.auth.getUser()
@@ -15,40 +15,42 @@ export default async function CheckoutPage({
   const locale = await getLocale()
   const dict = await getDictionary(locale)
   
-  const plan = params.plan || 'standard'
+  const plan = params.plan || 'medium'
   const isUpgrade = params.upgrade === 'true'
+  const initialPeriod = (params.period === 'mensuel' || params.periode === 'mensuel') ? 'mensuel' : 'annuel'
 
   if (isUpgrade && !user) {
     redirect('/login')
   }
 
   // Visiteur sans compte : inscription d'abord, sans passer par le formulaire de paiement
-  // (il y saisissait son moyen de paiement et son numéro pour rien, puis à nouveau au retour).
-  // Après l'inscription, il revient ici connecté pour payer le forfait choisi.
   if (!user) {
     redirect(`/signup?plan=${encodeURIComponent(plan)}`)
   }
 
   let currentTier = 'standard'
-  // GIE d'un autre pays (devise « sans unité ») : abonnement payé par carte en dollars US
   let enDollars = false
   if (user) {
     const { data: userData } = await supabase
       .from('utilisateurs')
-      .select('gies(subscription_tier, devise)')
+      .select('entreprises(subscription_tier, devise), gies(subscription_tier, devise)')
       .eq('id', user.id)
       .single()
 
-    const gie = Array.isArray(userData?.gies) ? userData.gies[0] : userData?.gies
-    if (gie) {
-      currentTier = gie.subscription_tier || 'standard'
-      enDollars = gie.devise === 'AUCUNE'
+    const entreprise = Array.isArray(userData?.entreprises)
+      ? userData.entreprises[0]
+      : (userData?.entreprises || (Array.isArray(userData?.gies) ? userData.gies[0] : userData?.gies))
+
+    if (entreprise) {
+      currentTier = entreprise.subscription_tier || 'standard'
+      enDollars = entreprise.devise === 'AUCUNE' || entreprise.devise === 'USD'
     }
   }
 
   return (
     <CheckoutClient
       initialPlan={plan}
+      initialPeriod={initialPeriod}
       isLoggedIn={!!user}
       currentTier={currentTier}
       isUpgrade={isUpgrade}

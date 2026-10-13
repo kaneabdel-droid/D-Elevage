@@ -1,6 +1,7 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { useSearchParams } from 'next/navigation'
 import { Plus, X, Activity, Egg, Milk, Scale } from 'lucide-react'
 import { enregistrerSuiviQuotidien } from './actions'
 
@@ -13,10 +14,17 @@ export default function CreerSuiviModal({
   animaux: Array<{ id: string; numero_boucle: string; nom_ou_surnom: string | null }>
   aliments: Array<{ id: string; nom: string; unite: string }>
 }) {
+  const searchParams = useSearchParams()
   const [open, setOpen] = useState(false)
   const [cibleType, setCibleType] = useState<'bande' | 'animal'>('bande')
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
+
+  useEffect(() => {
+    if (searchParams?.get('nouveau') === '1') {
+      setOpen(true)
+    }
+  }, [searchParams])
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()

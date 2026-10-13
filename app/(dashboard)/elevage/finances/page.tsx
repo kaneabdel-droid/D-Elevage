@@ -1,7 +1,8 @@
 import { createClient } from '@/utils/supabase/server'
 import { getTenantContext } from '@/utils/supabase/tenant'
-import { DollarSign, TrendingUp, TrendingDown, Scale, PiggyBank } from 'lucide-react'
+import { DollarSign, TrendingUp, TrendingDown, Scale, PiggyBank, Sparkles } from 'lucide-react'
 import CreerOperationModal from './CreerOperationModal'
+import { DEMO_FINANCES, DEMO_BANDES, DEMO_ANIMAUX } from '@/lib/demo-data'
 
 export default async function FinancesPage() {
   const tenant = await getTenantContext()
@@ -20,11 +21,16 @@ export default async function FinancesPage() {
     supabase.from('animaux').select('id, numero_boucle, etat_sante').order('created_at', { ascending: false })
   ])
 
+  const isDemo = !operations || operations.length === 0
+  const displayOperations = isDemo ? (DEMO_FINANCES as any[]) : operations
+  const displayBandes = (bandes && bandes.length > 0) ? bandes : DEMO_BANDES
+  const displayAnimaux = (animaux && animaux.length > 0) ? animaux : DEMO_ANIMAUX
+
   // Calculs totaux
   let totalRevenus = 0
   let totalDepenses = 0
 
-  operations?.forEach((op) => {
+  displayOperations?.forEach((op) => {
     const isVente = op.type_operation.startsWith('vente') || op.type_operation === 'autre_produit'
     const montant = Number(op.montant_total) || 0
     if (isVente) {
@@ -48,10 +54,17 @@ export default async function FinancesPage() {
           </p>
         </div>
         <CreerOperationModal
-          bandes={bandes || []}
-          animaux={animaux || []}
+          bandes={displayBandes}
+          animaux={displayAnimaux}
         />
       </div>
+
+      {isDemo && (
+        <div className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-primary/10 border border-primary/20 text-primary text-xs font-medium">
+          <Sparkles className="w-4 h-4 shrink-0" />
+          <span>Données de démonstration : ventes réelles (œufs, lait, Ladoum) et dépenses d'intrants.</span>
+        </div>
+      )}
 
       {/* Cartes KPI Financières */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">

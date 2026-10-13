@@ -6,11 +6,13 @@ import Link from 'next/link'
 import { CreditCard, Smartphone, Banknote, ArrowLeft, Clock } from 'lucide-react'
 import { initiateSubscriptionPayment } from './actions'
 import { montantUsd } from '@/lib/payments/dollars'
+import { FORFAITS_ELEVAGE, type TierElevage } from '@/lib/abonnements/tiers'
 
 type MoyenPaiement = 'wave' | 'orange' | 'carte' | 'virement' | 'chariow' | 'maketou'
 
 export default function CheckoutClient({
   initialPlan,
+  initialPeriod = 'annuel',
   isLoggedIn,
   currentTier,
   isUpgrade,
@@ -20,6 +22,7 @@ export default function CheckoutClient({
   locale,
 }: {
   initialPlan: string
+  initialPeriod?: 'annuel' | 'mensuel'
   isLoggedIn: boolean
   currentTier: string
   isUpgrade: boolean
@@ -54,24 +57,28 @@ export default function CheckoutClient({
   const [error, setError] = useState<string | null>(null)
   const [virementPending, setVirementPending] = useState(false)
 
-  const plans = {
-    standard: { name: 'Standard', price: '50.000 FCFA / an', value: 50000 },
-    medium: { name: 'Medium', price: '75.000 FCFA / an', value: 75000 },
-    premium: { name: 'Premium', price: '100.000 FCFA / an', value: 100000 }
-  }
+  const [billingCycle, setBillingCycle] = useState<'annuel' | 'mensuel'>(initialPeriod)
 
-  const selectedPlan = plans[initialPlan as keyof typeof plans] || plans.standard
-  const currentPlan = plans[currentTier as keyof typeof plans] || plans.standard
+  const planKey = (initialPlan in FORFAITS_ELEVAGE ? initialPlan : 'medium') as TierElevage
+  const forfait = FORFAITS_ELEVAGE[planKey] || FORFAITS_ELEVAGE.medium
+  const currentForfait = (currentTier in FORFAITS_ELEVAGE ? FORFAITS_ELEVAGE[currentTier as TierElevage] : FORFAITS_ELEVAGE.standard)
 
-  let priceToPay = selectedPlan.price
-  let numericPrice = selectedPlan.value
+  const selectedBasePrice = billingCycle === 'annuel' ? forfait.prixAnnuelFcfa : forfait.prixMensuelFcfa
+  const currentBasePrice = billingCycle === 'annuel' ? currentForfait.prixAnnuelFcfa : currentForfait.prixMensuelFcfa
 
+  let numericPrice = selectedBasePrice
   if (isUpgrade) {
-    numericPrice = selectedPlan.value - currentPlan.value
-    if (numericPrice <= 0) numericPrice = selectedPlan.value
-    priceToPay = `${numericPrice.toLocaleString(localeCode)} FCFA`
+    numericPrice = selectedBasePrice - currentBasePrice
+    if (numericPrice <= 0) numericPrice = selectedBasePrice
   }
-  if (enDollars) priceToPay = `${montantUsd(numericPrice).toLocaleString('en-US')} $`
+
+  const formattedAmount = numericPrice.toLocaleString('fr-FR').replace(/\s/g, '.')
+  const priceSuffix = billingCycle === 'annuel' ? 'an' : 'mois'
+  let priceToPay = `${formattedAmount} FCFA / ${priceSuffix}`
+
+  if (enDollars) {
+    priceToPay = `${montantUsd(numericPrice).toLocaleString('en-US')} $`
+  }
 
   const handlePayment = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -92,7 +99,7 @@ export default function CheckoutClient({
       return
     }
 
-    const result = await initiateSubscriptionPayment(initialPlan, isUpgrade, paymentMethod, phoneLocal)
+    const result = await initiateSubscriptionPayment(planKey, isUpgrade, paymentMethod, phoneLocal, billingCycle)
 
     setIsProcessing(false)
 
@@ -138,16 +145,54 @@ export default function CheckoutClient({
         <div className="bg-background border border-surface-border rounded-2xl overflow-hidden shadow-sm flex flex-col md:flex-row">
 
           {/* Order Summary */}
-          <div className="bg-primary/5 p-8 md:w-1/3 border-b md:border-b-0 md:border-r border-surface-border">
-            <h2 className="text-xl font-bold font-heading mb-6">{d.order_summary}</h2>
-            <div className="space-y-4">
+          <div className="bg-primary/5 p-8 md:w-1/3 border-b md:border-b-0 md:border-r border-surface-border flex flex-col justify-between">
+            <div className="space-y-6">
+              <h2 className="text-xl font-bold font-heading">{d.order_summary}</h2>
               <div>
                 <p className="text-sm text-foreground-muted">{d.subscription}</p>
-                <p className="font-semibold text-lg">{selectedPlan.name}</p>
+                <p className="font-semibold text-lg text-foreground">{forfait.nom}</p>
+                <p className="text-xs text-foreground-muted mt-1 leading-relaxed">{forfait.description}</p>
               </div>
+
+              {/* Cycle de facturation */}
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-wider text-foreground-muted mb-2">Période</p>
+                <div className="grid grid-cols-2 gap-2 p-1 bg-surface rounded-xl border border-surface-border">
+                  <button
+                    type="button"
+                    onClick={() => setBillingCycle('annuel')}
+                    className={`px-2.5 py-2 rounded-lg text-xs font-bold transition-all text-center ${
+                      billingCycle === 'annuel'
+                        ? 'bg-primary text-white shadow-sm'
+                        : 'text-foreground-muted hover:text-foreground'
+                    }`}
+                  >
+                    Annuel
+                    <span className="block text-[10px] font-normal opacity-90">-17% (2 mois off.)</span>
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setBillingCycle('mensuel')}
+                    className={`px-2.5 py-2 rounded-lg text-xs font-bold transition-all text-center ${
+                      billingCycle === 'mensuel'
+                        ? 'bg-primary text-white shadow-sm'
+                        : 'text-foreground-muted hover:text-foreground'
+                    }`}
+                  >
+                    Mensuel
+                    <span className="block text-[10px] font-normal opacity-90">Sans engag.</span>
+                  </button>
+                </div>
+              </div>
+
               <div className="pt-4 border-t border-surface-border">
                 <p className="text-sm text-foreground-muted mb-1">{d.total_ttc}</p>
-                <p className="text-2xl font-bold text-primary">{priceToPay}</p>
+                <p className="text-2xl font-bold text-primary tracking-tight">{priceToPay}</p>
+                {billingCycle === 'annuel' && !enDollars && (
+                  <p className="text-xs text-success font-medium mt-1">
+                    Économie : {(forfait.prixMensuelFcfa * 12 - forfait.prixAnnuelFcfa).toLocaleString('fr-FR').replace(/\s/g, '.')} FCFA / an
+                  </p>
+                )}
               </div>
             </div>
           </div>
@@ -247,7 +292,7 @@ export default function CheckoutClient({
                 ) : !isLoggedIn ? (
                   <>{d.create_account_btn}</>
                 ) : (
-                  <>{d.pay_prefix} {enDollars ? priceToPay : `${priceToPay.split(' ')[0]} FCFA`}</>
+                  <>{d.pay_prefix} {enDollars ? priceToPay : `${formattedAmount} FCFA`}</>
                 )}
               </button>
             </form>

@@ -2,23 +2,40 @@ import { createClient } from '@/utils/supabase/server'
 import { getTenantContext } from '@/utils/supabase/tenant'
 import { Bird, ShieldAlert, CheckCircle2, Calendar, Scale, Layers } from 'lucide-react'
 import CreerBandeModal from './CreerBandeModal'
+import { DEMO_BANDES, DEMO_BATIMENTS, DEMO_ESPECES } from '@/lib/demo-data'
 
 export default async function BandesPage() {
   const tenant = await getTenantContext()
   const supabase = await createClient()
 
-  const [
-    { data: bandes },
-    { data: batiments },
-    { data: especes }
-  ] = await Promise.all([
-    supabase
-      .from('bandes')
-      .select('*, batiments(nom)')
-      .order('date_entree', { ascending: false }),
-    supabase.from('batiments').select('id, nom').order('nom'),
-    supabase.from('especes_elevage').select('code, nom').order('nom')
-  ])
+  let bandes: any[] | null = null
+  let batiments: any[] | null = null
+  let especes: any[] | null = null
+
+  try {
+    const [
+      bandesRes,
+      batimentsRes,
+      especesRes
+    ] = await Promise.all([
+      supabase
+        .from('bandes')
+        .select('*, batiments(nom)')
+        .order('date_entree', { ascending: false }),
+      supabase.from('batiments').select('id, nom').order('nom'),
+      supabase.from('especes_elevage').select('code, nom').order('nom')
+    ])
+    bandes = bandesRes.data
+    batiments = batimentsRes.data
+    especes = especesRes.data
+  } catch {
+    // Fallback démo
+  }
+
+  const isDemo = !tenant || tenant.entrepriseId === '00000000-0000-0000-0000-000000000001'
+  const displayBandes = (bandes && bandes.length > 0) ? bandes : (isDemo ? DEMO_BANDES : [])
+  const displayBatiments = (batiments && batiments.length > 0) ? batiments : (isDemo ? DEMO_BATIMENTS : [])
+  const displayEspeces = (especes && especes.length > 0) ? especes : (isDemo ? DEMO_ESPECES : [])
 
   return (
     <div className="space-y-6">
@@ -33,15 +50,15 @@ export default async function BandesPage() {
           </p>
         </div>
         <CreerBandeModal
-          batiments={batiments || []}
-          especes={especes || []}
+          batiments={displayBatiments}
+          especes={displayEspeces}
         />
       </div>
 
       {/* Grille des bandes */}
-      {bandes && bandes.length > 0 ? (
+      {displayBandes && displayBandes.length > 0 ? (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {bandes.map((b) => {
+          {displayBandes.map((b: any) => {
             const perteSujets = b.effectif_initial - b.effectif_actuel
             const tauxMortalite = b.effectif_initial > 0 
               ? ((perteSujets / b.effectif_initial) * 100).toFixed(1) 
