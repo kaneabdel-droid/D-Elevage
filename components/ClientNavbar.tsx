@@ -10,68 +10,94 @@ export default function ClientNavbar({ dict, currentLang }: { dict?: any, curren
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-surface-border bg-background/85 backdrop-blur-md">
+      {/* Barre supérieure discrète vers Demba Solution */}
+      <div className="border-b border-surface-border/60 bg-surface/80 text-xs py-1.5 px-4">
+        <div className="container mx-auto flex items-center justify-between">
+          <a
+            href="https://dembasolution.com"
+            title="Retour au portail Demba Solution"
+            className="inline-flex items-center gap-1.5 font-medium text-foreground-muted hover:text-primary transition-colors"
+          >
+            ← <span className="font-semibold text-primary">Demba Solution</span>
+            <span className="text-foreground-muted/70 hidden sm:inline">— Portail principal</span>
+          </a>
+          <span className="text-[11px] text-foreground-muted hidden md:inline">
+            Gestion d&apos;Élevage Multi-espèces & Rentabilité
+          </span>
+        </div>
+      </div>
+
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex h-16 items-center justify-between">
-          <div className="flex items-center gap-4">
-            <a
-              href="https://dembasolution.com"
-              title="Retour au portail Demba Solution"
-              className="inline-flex items-center gap-1.5 text-xs font-medium text-foreground-muted hover:text-primary transition-colors py-1 px-2.5 rounded-lg border border-surface-border bg-surface hover:border-primary/40 shadow-xs"
-            >
-              ← <span className="hidden sm:inline">Portail</span> Demba Solution
-            </a>
-
-            <Link href="/" className="flex items-center gap-2.5 shrink-0">
-              <span className="w-9 h-9 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
-                <Bird className="w-5 h-5" />
+        <div className="flex h-16 items-center justify-between gap-4">
+          {/* Logo de marque D-ÉLEVAGE */}
+          <Link href="/" className="flex items-center gap-2.5 shrink-0">
+            <span className="w-9 h-9 rounded-xl bg-primary/10 flex items-center justify-center text-primary shrink-0">
+              <Bird className="w-5 h-5" />
+            </span>
+            <div className="flex flex-col">
+              <span className="text-lg sm:text-xl font-bold font-heading text-primary leading-tight whitespace-nowrap">
+                D-ÉLEVAGE
               </span>
-              <div className="flex flex-col">
-                <span className="text-lg sm:text-xl font-bold font-heading text-primary leading-tight">
-                  D-ÉLEVAGE
-                </span>
-                <span className="text-[10px] text-foreground-muted -mt-0.5 tracking-wider uppercase font-semibold hidden sm:inline">
-                  Demba Solution
-                </span>
-              </div>
-            </Link>
-          </div>
+              <span className="text-[10px] text-foreground-muted -mt-0.5 tracking-wider uppercase font-semibold hidden sm:inline whitespace-nowrap">
+                Demba Solution
+              </span>
+            </div>
+          </Link>
 
-          <nav className="hidden md:flex gap-6 items-center">
-            <Link href="/#especes" className="text-sm font-medium text-foreground-muted hover:text-primary transition-colors">
+          {/* Navigation desktop (breakpoint lg pour éviter tout chevauchement) */}
+          <nav className="hidden lg:flex gap-5 xl:gap-8 items-center shrink-0">
+            <Link
+              href="/#especes"
+              className="text-sm font-medium text-foreground-muted hover:text-primary transition-colors whitespace-nowrap"
+            >
               Espèces & Élevages
             </Link>
-            <Link href="/tarifs" className="text-sm font-medium text-foreground-muted hover:text-primary transition-colors">
+            <Link
+              href="/tarifs"
+              className="text-sm font-medium text-foreground-muted hover:text-primary transition-colors whitespace-nowrap"
+            >
               Tarifs & Forfaits
             </Link>
-            <Link href="/guide" className="text-sm font-medium text-foreground-muted hover:text-primary transition-colors">
+            <Link
+              href="/guide"
+              className="text-sm font-medium text-foreground-muted hover:text-primary transition-colors whitespace-nowrap"
+            >
               Guide d&apos;utilisation
             </Link>
-            <Link href="/demo" className="text-sm font-medium text-foreground-muted hover:text-primary transition-colors inline-flex items-center gap-1 text-primary font-semibold">
+            <Link
+              href="/demo"
+              className="text-sm font-medium text-primary font-semibold hover:text-primary-hover transition-colors inline-flex items-center gap-1 whitespace-nowrap"
+            >
               <Sparkles className="w-3.5 h-3.5" /> Démo en direct
             </Link>
-            <Link href="/#contact" className="text-sm font-medium text-foreground-muted hover:text-primary transition-colors">
+            <Link
+              href="/#contact"
+              className="text-sm font-medium text-foreground-muted hover:text-primary transition-colors whitespace-nowrap"
+            >
               Contact
             </Link>
           </nav>
 
-          <div className="flex gap-2 sm:gap-3 items-center">
+          {/* Actions & sélecteur de langue */}
+          <div className="flex gap-2 sm:gap-3 items-center shrink-0">
             <LanguageSelector currentLang={currentLang} />
             <Link
               href="/login"
-              className="rounded-full border border-surface-border px-3.5 py-1.5 text-sm font-semibold text-foreground hover:border-primary hover:text-primary transition-all"
+              className="rounded-full border border-surface-border px-3.5 py-1.5 text-sm font-semibold text-foreground hover:border-primary hover:text-primary transition-all whitespace-nowrap"
             >
               Connexion
             </Link>
             <Link
               href="/tarifs"
-              className="hidden sm:inline-flex rounded-full bg-primary px-4 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-primary-hover transition-all"
+              className="hidden sm:inline-flex rounded-full bg-primary px-4 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-primary-hover transition-all whitespace-nowrap"
             >
               S&apos;abonner
             </Link>
             <button
               type="button"
-              className="md:hidden p-2 text-foreground-muted hover:text-foreground"
+              className="lg:hidden p-2 text-foreground-muted hover:text-foreground"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              aria-label="Menu de navigation"
             >
               {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
@@ -79,8 +105,15 @@ export default function ClientNavbar({ dict, currentLang }: { dict?: any, curren
         </div>
       </div>
 
+      {/* Menu mobile rétractable */}
       {mobileMenuOpen && (
-        <div className="md:hidden border-t border-surface-border bg-background/95 backdrop-blur-md px-4 py-4 space-y-3">
+        <div className="lg:hidden border-t border-surface-border bg-background/95 backdrop-blur-md px-4 py-4 space-y-3">
+          <a
+            href="https://dembasolution.com"
+            className="block text-sm font-medium text-primary pb-2 border-b border-surface-border/60"
+          >
+            ← Retour au portail Demba Solution
+          </a>
           <Link
             href="/#especes"
             onClick={() => setMobileMenuOpen(false)}

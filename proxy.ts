@@ -1,11 +1,12 @@
 import { NextResponse, type NextRequest } from 'next/server'
-import { updateSession } from '@/utils/supabase/middleware'
+import { updateSession } from '@/utils/supabase/proxy'
 
-export async function middleware(request: NextRequest) {
+// Next.js 16 : convention native proxy (remplace l'ancien middleware.ts)
+export async function proxy(request: NextRequest) {
   try {
     return await updateSession(request)
   } catch (error) {
-    console.error('Middleware failure fallback:', error)
+    console.error('Proxy failure fallback:', error)
     return NextResponse.next({ request })
   }
 }
