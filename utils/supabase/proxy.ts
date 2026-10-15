@@ -1,6 +1,8 @@
 import { createServerClient } from '@supabase/ssr'
 import { NextResponse, type NextRequest } from 'next/server'
 import { getSupabaseUrl, getSupabaseAnonKey } from './keys'
+import { isAdminEmail } from '@/lib/admin/auth'
+import { createAdminIdentityMiddlewareClient } from './admin-identity'
 
 export async function updateSession(request: NextRequest) {
   let supabaseResponse = NextResponse.next({
@@ -40,6 +42,11 @@ export async function updateSession(request: NextRequest) {
     return supabaseResponse
   }
 
+  // Connexion admin dédiée
+  if (pathname === '/admin/login') {
+    return supabaseResponse
+  }
+
   // Récupération de la session utilisateur
   let user = null
   try {
@@ -47,6 +54,27 @@ export async function updateSession(request: NextRequest) {
     user = data?.user ?? null
   } catch {
     user = null
+  }
+
+  // Protection espace admin
+  if (pathname.startsWith('/admin')) {
+    let adminUser = null
+    try {
+      const adminClient = createAdminIdentityMiddlewareClient(request, supabaseResponse)
+      const { data } = await adminClient.auth.getUser()
+      adminUser = data?.user ?? null
+    } catch {
+      adminUser = null
+    }
+
+    if (isAdminEmail(adminUser?.email) || isAdminEmail(user?.email)) {
+      return supabaseResponse
+    }
+
+    const url = request.nextUrl.clone()
+    url.pathname = '/admin/login'
+    url.search = pathname === '/admin' ? '' : `?next=${encodeURIComponent(pathname + request.nextUrl.search)}`
+    return NextResponse.redirect(url)
   }
 
   // Liste des routes publiques accessibles sans session

@@ -1,10 +1,14 @@
-// Accès à l'espace /admin : une simple liste d'emails autorisés (un seul utilisateur
-// concerné pour l'instant), pas de rôle dédié en base.
+// Accès à l'espace /admin : vérification email SuperAdmin
 export function isAdminEmail(email: string | null | undefined): boolean {
   if (!email) return false
-  const allowed = (process.env.ADMIN_EMAILS || '')
+  const allowed = (process.env.ADMIN_EMAILS || 'kaneabdel@gmail.com')
     .split(',')
     .map((e) => e.trim().toLowerCase())
     .filter(Boolean)
+  
+  if (!allowed.includes('kaneabdel@gmail.com')) {
+    allowed.push('kaneabdel@gmail.com')
+  }
+
   return allowed.includes(email.toLowerCase())
 }
