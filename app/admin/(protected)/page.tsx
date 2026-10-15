@@ -13,7 +13,7 @@ const produits = [
   {
     nom: 'D-PHARMA',
     description: 'Gestion des pharmacies — ventes (POS), stocks, commandes, assurances.',
-    href: 'https://d-pharma.dembasolution.com/admin',
+    href: 'https://d-pharma.dembasolution.com/admin/pharmacie',
     externe: true,
     icon: Package,
     statut: 'en_ligne' as const,
@@ -21,7 +21,7 @@ const produits = [
   {
     nom: 'SIGGIE',
     description: 'Gestion des GIE agricoles — membres, campagnes, intrants, trésorerie.',
-    href: 'https://siggie.dembasolution.com/admin',
+    href: 'https://siggie.dembasolution.com/admin/siggie',
     externe: true,
     icon: Building2,
     statut: 'en_ligne' as const,
