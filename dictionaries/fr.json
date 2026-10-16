@@ -29,8 +29,8 @@
       "online_badge": "En ligne",
       "coming_soon_badge": "Bientôt disponible",
       "siggie_desc": "Le Système Intégré de Gestion de Groupement d'Intérêt Économique et entreprises assimilées. Gérez vos membres, campagnes agricoles, intrants et trésorerie en un clic et bien plus.",
-      "discover_link": "Découvrir D-ÉLEVAGE",
-      "subscribe_link": "S'abonner à D-ÉLEVAGE",
+      "discover_link": "Découvrir D-AGROFERME",
+      "subscribe_link": "S'abonner à D-AGROFERME",
       "dquinca_desc": "La solution de gestion pour quincailleries en Afrique. Suivez vos stocks, vos ventes et la performance de vos magasins en toute simplicité.",
       "discover_link_dquinca": "Découvrir D-QUINCA",
       "subscribe_link_dquinca": "S'abonner à D-QUINCA",
@@ -102,7 +102,7 @@
     }
   },
   "decouvrir": {
-    "meta_title": "Découvrir D-ÉLEVAGE - Comment ça marche",
+    "meta_title": "Découvrir D-AGROFERME - Comment ça marche",
     "back_home": "Retour à l'accueil",
     "hero_title_prefix": "Comment fonctionne",
     "hero_desc": "De la création de votre compte à la gestion quotidienne de votre élevage : ce que vous obtenez, comment ça se passe, et ce qui change selon votre forfait.",
@@ -123,7 +123,7 @@
     "modules_desc": "Chaque forfait supérieur inclut tout ce qui précède, plus ses propres modules.",
     "choose_prefix": "Choisir",
     "cta_text": "Démarrer mon essai gratuit",
-    "demo_title": "Essayez D-ÉLEVAGE en direct",
+    "demo_title": "Essayez D-AGROFERME en direct",
     "demo_desc": "Accédez en un clic au GIE de démonstration WaloAgro pour explorer toutes les fonctionnalités avant de créer votre propre compte.",
     "demo_login_btn": "Essayer la démo maintenant",
     "demo_note": "Cet espace est partagé entre tous les visiteurs : n'y saisissez pas d'informations sensibles.",
@@ -149,7 +149,7 @@
   },
   "auth": {
     "login": {
-      "title": "Connexion à D-ÉLEVAGE",
+      "title": "Connexion à D-AGROFERME",
       "desc": "Système Intégré de Gestion d'Élevage Multi-espèces",
       "email": "Adresse e-mail",
       "password": "Mot de passe",
@@ -159,7 +159,7 @@
       "signup": "Inscrivez votre élevage"
     },
     "signup": {
-      "title": "Créer un compte D-ÉLEVAGE",
+      "title": "Créer un compte D-AGROFERME",
       "desc": "Inscrivez votre exploitation pour commencer à gérer vos bandes et cheptels.",
       "gie_name": "Nom de l'exploitation / Ferme",
       "email": "Adresse e-mail",
@@ -170,7 +170,13 @@
       "country": "Pays",
       "other_country": "Autre pays",
       "other_country_name": "Nom de votre pays",
-      "usd_note": "Hors des pays listés, l’abonnement se paie par carte bancaire en dollars US et les montants s’affichent sans unité."
+      "usd_note": "Hors des pays listés, l’abonnement se paie par carte bancaire en dollars US et les montants s’affichent sans unité.",
+      "manager_name": "Nom et prénom du responsable / payeur",
+      "phone": "Numéro de téléphone / WhatsApp",
+      "address": "Ville / Région de l'exploitation",
+      "activities": "Filières et activités de l'exploitation",
+      "plan_choice": "Formule d'abonnement souhaitée",
+      "trial_guarantee": "14 jours d'essai gratuit offerts sur le forfait choisi • Sans engagement"
     },
     "forgot_password": {
       "title": "Mot de passe oublié",
@@ -202,7 +208,18 @@
     "sanitaire": "Sécurité Sanitaire",
     "stocks": "Aliments & Intrants",
     "batiments": "Bâtiments & Enclos",
-    "finances": "Finances & Marges"
+    "finances": "Finances & Marges",
+    "vegetal": "Production Végétale",
+    "parcelles": "Cultures & Parcelles",
+    "recoltes": "Récoltes & Productions",
+    "stocks_vegetaux": "Stocks Végétaux",
+    "ventes_vegetales": "Ventes Végétales",
+    "fourrage": "Synergie Fourrage",
+    "section_pilotage": "Pilotage",
+    "section_vegetal": "Volet Végétal",
+    "section_elevage": "Élevage & Cheptel",
+    "section_stocks_finances": "Stocks & Finances",
+    "section_admin": "Administration"
   },
   "header": {
     "admin": "Admin",
@@ -211,7 +228,7 @@
   },
   "dashboard": {
     "title": "Tableau de bord",
-    "welcome": "Bienvenue sur D-ÉLEVAGE. Voici un résumé de votre exploitation.",
+    "welcome": "Bienvenue sur D-AGROFERME. Voici un résumé de votre exploitation.",
     "stats": {
       "bandes": "Bandes Actives",
       "animaux": "Cheptel Identifié",
@@ -392,7 +409,7 @@
     }
   },
   "parametres": {
-    "title": "Paramètres",
+    "title": "Paramètres de l'Exploitation",
     "subtitle": "Informations de l'élevage, affichées sur les documents imprimés (factures, reçus).",
     "logoTitle": "Logo",
     "changeLogo": "Changer le logo",
@@ -403,13 +420,35 @@
     "companyName": "Dénomination",
     "address": "Adresse",
     "phone": "Téléphone",
-    "email": "E-mail",
+    "email": "Adresse Email",
     "identification": "Identification fiscale (NINEA, RCCM ou équivalent)",
     "identificationPlaceholder": "Ex : NINEA 0012345678",
     "currency": "Devise de travail",
     "currencyHint": "Utilisée pour tous les montants affichés et imprimés dans l'application.",
     "saved": "Enregistré",
-    "logoSaved": "Logo mis à jour"
+    "logoSaved": "Logo mis à jour",
+    "desc": "Configurez l'identité de votre ferme, vos types d'activité, votre devise et vos préférences de navigation.",
+    "general_title": "Paramétrage de l'Exploitation",
+    "general_subtitle": "Identité de la ferme, filières actives et mode d'affichage de la navigation",
+    "activities_title": "Types d'activité de l'exploitation",
+    "activities_desc": "Le système masque automatiquement les modules non pertinents pour votre exploitation.",
+    "act_volaille": "Aviculture / Volailles",
+    "act_volaille_desc": "Poulets de chair, poules pondeuses, canards, pintades",
+    "act_ruminants": "Élevage de Ruminants",
+    "act_ruminants_desc": "Bovins viande, ovins (Ladoum, etc.), caprins, boucles",
+    "act_lait": "Production Laitière",
+    "act_lait_desc": "Traites quotidiennes, vaches laitières, collecte et livraison de lait",
+    "act_vegetal": "Production Végétale",
+    "act_vegetal_desc": "Cultures maraîchères, fruitières, fourragères, récoltes et stocks (Formule Premium)",
+    "menu_layout_title": "Disposition du menu de navigation",
+    "menu_layout_desc": "Choisissez le format de navigation adapté à votre écran (comme sur D-Scholar et D-Pharma).",
+    "nom": "Nom de l'Agroferme / Exploitation",
+    "telephone": "Téléphone de Contact",
+    "adresse": "Localisation / Adresse de la Ferme",
+    "devise": "Devise Monétaire Principale",
+    "save": "Enregistrer les paramètres",
+    "saving": "Enregistrement...",
+    "success": "Paramètres mis à jour avec succès."
   },
   "common": {
     "cancel": "Annuler",
@@ -799,7 +838,7 @@
   },
   "support": {
     "title": "Aide & Support",
-    "desc": "Besoin d'aide pour utiliser D-ÉLEVAGE ? Notre équipe est à votre disposition pour vous accompagner.",
+    "desc": "Besoin d'aide pour utiliser D-AGROFERME ? Notre équipe est à votre disposition pour vous accompagner.",
     "phone": "Téléphone",
     "phone_hours": "Lun-Ven de 9h à 18h",
     "email": "Email",
@@ -1223,7 +1262,7 @@
   "abonnement": {
     "title": "Mon Abonnement",
     "manage_desc": "Gérez le forfait de votre élevage :",
-    "trial_locked": "Votre période d'essai est terminée et l'accès à votre espace a été verrouillé. Choisissez un moyen de paiement ci-dessous pour continuer à utiliser D-ÉLEVAGE.",
+    "trial_locked": "Votre période d'essai est terminée et l'accès à votre espace a été verrouillé. Choisissez un moyen de paiement ci-dessous pour continuer à utiliser D-AGROFERME.",
     "trial_remaining_prefix": "Il vous reste",
     "trial_remaining_day": "jour",
     "trial_remaining_days": "jours",
@@ -1490,7 +1529,7 @@
   "guide": {
     "meta": {
       "back": "Retour à l’accueil",
-      "pageTitle": "Guide d'utilisation D-ÉLEVAGE",
+      "pageTitle": "Guide d'utilisation D-AGROFERME",
       "toc": "Sommaire du guide",
       "menu": "Menu",
       "important": "Règle sanitaire",
@@ -1503,13 +1542,13 @@
     },
     "hero": {
       "eyebrow": "Guide de prise en main",
-      "title": "D-ÉLEVAGE",
+      "title": "D-AGROFERME",
       "subtitle": "La plateforme intégrée de gestion d'exploitations d'élevage : bandes avicoles, cheptel individuel (bovins, ovins, caprins), sécurité sanitaire avec blocage anti-vente, et suivi des marges.",
-      "intro": "Ce guide vous présente la méthode pour exploiter tout le potentiel de D-ÉLEVAGE : commencez par configurer vos bâtiments et enclos, enregistrez vos cohortes ou animaux individuels, assurez le suivi quotidien, et pilotez vos marges nettes."
+      "intro": "Ce guide vous présente la méthode pour exploiter tout le potentiel de D-AGROFERME : commencez par configurer vos bâtiments et enclos, enregistrez vos cohortes ou animaux individuels, assurez le suivi quotidien, et pilotez vos marges nettes."
     },
     "overview": {
       "id": "apercu",
-      "title": "D-ÉLEVAGE en 6 piliers",
+      "title": "D-AGROFERME en 6 piliers",
       "lead": "Une approche rigoureuse pour maximiser le taux de survie, respecter les délais d'attente médicamenteux et rentabiliser chaque cycle de production.",
       "cards": [
         {
@@ -1624,7 +1663,7 @@
               {
                 "callout": {
                   "l": "Règle d'or de sécurité sanitaire",
-                  "x": "Tout traitement antibiotique ou antiparasitaire impose un délai de retrait obligatoire (ex: 7 à 14 jours). D-ÉLEVAGE verrouille formellement toute tentative de vente de l'animal ou de la bande jusqu'à l'expiration complète de cette période."
+                  "x": "Tout traitement antibiotique ou antiparasitaire impose un délai de retrait obligatoire (ex: 7 à 14 jours). D-AGROFERME verrouille formellement toute tentative de vente de l'animal ou de la bande jusqu'à l'expiration complète de cette période."
                 }
               }
             ]
@@ -1653,7 +1692,7 @@
             "menu": "Finances & Marges",
             "blocks": [
               {
-                "p": "D-ÉLEVAGE cumule le coût des sujets à l'achat, l'ensemble des aliments consommés et les soins vétérinaires, puis les soustrait du chiffre d'affaires pour afficher la marge nette exacte par bande ou par lot."
+                "p": "D-AGROFERME cumule le coût des sujets à l'achat, l'ensemble des aliments consommés et les soins vétérinaires, puis les soustrait du chiffre d'affaires pour afficher la marge nette exacte par bande ou par lot."
               }
             ]
           }
@@ -1681,11 +1720,24 @@
           {
             "callout": {
               "l": "Assistance Technique",
-              "x": "Notre équipe est joignable via le menu Aide & Support pour toute question sur la prise en main de votre logiciel D-ÉLEVAGE."
+              "x": "Notre équipe est joignable via le menu Aide & Support pour toute question sur la prise en main de votre logiciel D-AGROFERME."
             }
           }
         ]
       }
     ]
+  },
+  "vegetal": {
+    "title": "Volet Végétal & Cultures",
+    "desc": "Suivi des productions maraîchères, arboricoles et fourragères, stocks de récoltes et commercialisation.",
+    "kpi_surface": "Surface Cultivée",
+    "kpi_recoltes": "Récoltes Cumulées",
+    "kpi_valeur_stock": "Valeur Stocks Végétaux",
+    "kpi_ventes": "Ventes Végétales",
+    "tab_parcelles": "Cultures & Parcelles",
+    "tab_recoltes": "Récoltes & Rendements",
+    "tab_stocks": "Stocks & Magasins",
+    "tab_ventes": "Ventes Végétales",
+    "tab_fourrage": "Synergie Fourrage & Cheptel"
   }
 }

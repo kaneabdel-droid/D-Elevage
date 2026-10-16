@@ -45,19 +45,20 @@ export const FORFAITS_ELEVAGE: Record<TierElevage, ForfaitInfo> = {
   },
   premium: {
     id: 'premium',
-    nom: 'Prémium',
+    nom: 'Prémium Agro-Pastoral',
     prixMensuelFcfa: 15000,
     prixAnnuelFcfa: 150000,
     quotaUtilisateurs: 7, // 1 Admin + 6 Utilisateurs
-    description: 'Comptabilité complète, ratios financiers et rentabilité par lot',
+    description: 'Gestion agro-pastorale complète : élevage + volet végétal intégré',
     modulesInclus: [
       'Tout le forfait Médium',
-      'Indice de Consommation (IC) par bande',
-      'Marges brutes et nettes en temps réel',
+      'Volet végétal complet : parcelles maraîchères, fruitières, fourragères',
+      'Suivi des productions, récoltes, variétés & calendrier cultural',
+      'Stocks de récoltes, semences & alimentation fourragère du cheptel',
+      'Ventes végétales, facturation & reçus de vente',
+      'Indice de Consommation (IC) par bande & marges nettes',
       'Comptabilité analytique & Trésorerie multi-comptes',
-      'Exports PDF & bilans personnalisés',
-      'Jusqu’à 7 utilisateurs',
-      'Support prioritaire 7j/7',
+      'Jusqu’à 7 utilisateurs & Support prioritaire 7j/7',
     ],
   },
 }

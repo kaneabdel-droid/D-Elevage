@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
-import { CreditCard, Smartphone, Banknote, ArrowLeft, Clock } from 'lucide-react'
+import { CreditCard, Smartphone, Banknote, ArrowLeft, Clock, Building2, User, Phone, Mail, MapPin } from 'lucide-react'
 import { initiateSubscriptionPayment } from './actions'
 import { montantUsd } from '@/lib/payments/dollars'
 import { FORFAITS_ELEVAGE, type TierElevage } from '@/lib/abonnements/tiers'
@@ -18,6 +18,7 @@ export default function CheckoutClient({
   isUpgrade,
   enDollars = false,
   hasOnlinePayment,
+  entrepriseInfo,
   dict,
   locale,
 }: {
@@ -29,6 +30,15 @@ export default function CheckoutClient({
   /** GIE d'un autre pays (devise « sans unité ») : paiement par carte en dollars US uniquement. */
   enDollars?: boolean
   hasOnlinePayment: { mobileMoney: boolean; carte: boolean; chariow: boolean; maketou: boolean }
+  entrepriseInfo?: {
+    nom: string
+    responsable?: string
+    telephone?: string
+    email?: string
+    adresse?: string
+    code_pays?: string
+    devise?: string
+  }
   dict: any
   locale: string
 }) {
@@ -52,7 +62,7 @@ export default function CheckoutClient({
 
   const router = useRouter()
   const [paymentMethod, setPaymentMethod] = useState<MoyenPaiement>(availableMethods[0])
-  const [phoneLocal, setPhoneLocal] = useState('')
+  const [phoneLocal, setPhoneLocal] = useState(entrepriseInfo?.telephone || '')
   const [isProcessing, setIsProcessing] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [virementPending, setVirementPending] = useState(false)
@@ -193,6 +203,46 @@ export default function CheckoutClient({
                     Économie : {(forfait.prixMensuelFcfa * 12 - forfait.prixAnnuelFcfa).toLocaleString('fr-FR').replace(/\s/g, '.')} FCFA / an
                   </p>
                 )}
+              </div>
+
+              {/* Entreprise & Payeur identifiés */}
+              <div className="pt-4 border-t border-surface-border">
+                <div className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-primary mb-2">
+                  <Building2 className="w-3.5 h-3.5" />
+                  <span>Exploitation & Payeur identifiés</span>
+                </div>
+                <div className="bg-surface p-3.5 rounded-xl border border-surface-border space-y-1.5 text-xs">
+                  <div>
+                    <span className="text-[10px] uppercase font-bold text-foreground-muted block">Exploitation facturée :</span>
+                    <p className="font-bold text-foreground text-sm">
+                      {entrepriseInfo?.nom || 'Mon Exploitation'}
+                    </p>
+                  </div>
+                  {entrepriseInfo?.responsable && (
+                    <div className="flex items-center gap-1.5 text-foreground-muted pt-1 border-t border-surface-border/50">
+                      <User className="w-3 h-3 text-primary shrink-0" />
+                      <span>Responsable : <strong className="text-foreground">{entrepriseInfo.responsable}</strong></span>
+                    </div>
+                  )}
+                  {entrepriseInfo?.telephone && (
+                    <div className="flex items-center gap-1.5 text-foreground-muted font-mono">
+                      <Phone className="w-3 h-3 text-primary shrink-0" />
+                      <span>{entrepriseInfo.telephone}</span>
+                    </div>
+                  )}
+                  {entrepriseInfo?.email && (
+                    <div className="flex items-center gap-1.5 text-foreground-muted truncate">
+                      <Mail className="w-3 h-3 text-primary shrink-0" />
+                      <span className="truncate">{entrepriseInfo.email}</span>
+                    </div>
+                  )}
+                  {entrepriseInfo?.adresse && (
+                    <div className="flex items-center gap-1.5 text-foreground-muted">
+                      <MapPin className="w-3 h-3 text-primary shrink-0" />
+                      <span>{entrepriseInfo.adresse}</span>
+                    </div>
+                  )}
+                </div>
               </div>
             </div>
           </div>

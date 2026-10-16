@@ -64,8 +64,8 @@ export async function applyPaymentResult(
     // autre paiement (le client a réglé deux pages de paiement ouvertes en parallèle),
     // l'argent est bien encaissé mais ne change rien à l'abonnement → doublon à rembourser,
     // exclu des statistiques de vente.
-    const [{ data: gie }, { count: dejaPaye }] = await Promise.all([
-      supabase.from('gies').select('subscription_tier').eq('id', payment.gie_id).single(),
+    const [{ data: ent }, { count: dejaPaye }] = await Promise.all([
+      supabase.from('entreprises').select('subscription_tier').eq('id', payment.gie_id).maybeSingle(),
       supabase
         .from('abonnement_paiements')
         .select('id', { count: 'exact', head: true })
@@ -75,15 +75,15 @@ export async function applyPaymentResult(
         .eq('doublon', false)
         .neq('id', payment.id),
     ])
-    if (gie?.subscription_tier === payment.niveau && dejaPaye) {
+    if (ent?.subscription_tier === payment.niveau && dejaPaye) {
       await supabase.from('abonnement_paiements').update({ doublon: true }).eq('id', payment.id)
       console.error('[paiement] doublon encaissé — à rembourser', { provider, paymentId: payment.id, gieId: payment.gie_id })
       return { processed: true, statut: target, doublon: true }
     }
 
-    // Le paiement lève la contrainte d'essai : le GIE n'est plus sur une horloge d'expiration.
+    // Le paiement lève la contrainte d'essai : l'entreprise n'est plus sur une horloge d'expiration.
     await supabase
-      .from('gies')
+      .from('entreprises')
       .update({ subscription_tier: payment.niveau, essai_expire_le: null })
       .eq('id', payment.gie_id)
   }

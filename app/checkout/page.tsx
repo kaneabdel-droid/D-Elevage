@@ -23,19 +23,29 @@ export default async function CheckoutPage({
     redirect('/login')
   }
 
-  // Visiteur sans compte : inscription d'abord, sans passer par le formulaire de paiement
+  // Visiteur sans compte : inscription d'abord avec identification de l'entreprise
   if (!user) {
     redirect(`/signup?plan=${encodeURIComponent(plan)}`)
   }
 
   let currentTier = 'standard'
   let enDollars = false
+  let entrepriseInfo = {
+    nom: 'Mon Exploitation',
+    responsable: '',
+    telephone: '',
+    email: user?.email || '',
+    code_pays: 'SN',
+    adresse: '',
+    devise: 'FCFA',
+  }
+
   if (user) {
     const { data: userData } = await supabase
       .from('utilisateurs')
-      .select('entreprises(subscription_tier, devise), gies(subscription_tier, devise)')
+      .select('nom_complet, entreprises(id, nom, code_pays, devise, telephone, email, adresse, subscription_tier), gies(id, nom, code_pays, devise, telephone, email, adresse, subscription_tier)')
       .eq('id', user.id)
-      .single()
+      .maybeSingle()
 
     const entreprise = Array.isArray(userData?.entreprises)
       ? userData.entreprises[0]
@@ -44,6 +54,26 @@ export default async function CheckoutPage({
     if (entreprise) {
       currentTier = entreprise.subscription_tier || 'standard'
       enDollars = entreprise.devise === 'AUCUNE' || entreprise.devise === 'USD'
+      entrepriseInfo = {
+        nom: entreprise.nom || (user.user_metadata?.gie_nom as string) || 'Mon Exploitation',
+        responsable: userData?.nom_complet || (user.user_metadata?.nom_complet as string) || '',
+        telephone: entreprise.telephone || (user.user_metadata?.telephone as string) || '',
+        email: entreprise.email || user.email || '',
+        code_pays: entreprise.code_pays || (user.user_metadata?.pays as string) || 'SN',
+        adresse: entreprise.adresse || (user.user_metadata?.adresse as string) || '',
+        devise: entreprise.devise || (user.user_metadata?.devise as string) || 'FCFA',
+      }
+    } else {
+      // Fallback sur métadonnées auth
+      entrepriseInfo = {
+        nom: (user.user_metadata?.gie_nom as string) || (user.user_metadata?.nom_entreprise as string) || 'Mon Exploitation',
+        responsable: (user.user_metadata?.nom_complet as string) || '',
+        telephone: (user.user_metadata?.telephone as string) || '',
+        email: user.email || '',
+        code_pays: (user.user_metadata?.pays as string) || 'SN',
+        adresse: (user.user_metadata?.adresse as string) || '',
+        devise: (user.user_metadata?.devise as string) || 'FCFA',
+      }
     }
   }
 
@@ -56,6 +86,7 @@ export default async function CheckoutPage({
       isUpgrade={isUpgrade}
       enDollars={enDollars}
       hasOnlinePayment={{ mobileMoney: hasBictorysKeys, carte: hasMonerooKeys, chariow: hasChariowKeys, maketou: hasMaketouKeys }}
+      entrepriseInfo={entrepriseInfo}
       dict={dict}
       locale={locale}
     />

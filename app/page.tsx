@@ -9,7 +9,8 @@ import {
   ArrowRight,
   Calendar,
   CheckCircle2,
-  DollarSign
+  DollarSign,
+  Sprout
 } from 'lucide-react'
 import ClientNavbar from '@/components/ClientNavbar'
 import { getDictionary, getLocale } from '@/dictionaries'
@@ -27,17 +28,17 @@ export default async function LandingPage() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mx-auto text-center">
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 text-primary text-xs font-semibold uppercase tracking-wider mb-6">
-              <Bird className="w-4 h-4" /> Solution Multi-espèces
+              <Sprout className="w-4 h-4" /> Plateforme Agro-Pastorale Intégrée
             </div>
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold font-heading tracking-tight mb-6">
-              Pilotez la performance et la rentabilité de votre <span className="text-primary">Élevage</span>
+              Pilotez la performance et la rentabilité de votre <span className="text-primary">Agroferme</span>
             </h1>
             <p className="text-lg sm:text-xl text-foreground-muted mb-8 leading-relaxed">
-              Aviculture (chair & ponte), Bovins (lait & viande), Petits ruminants et Porcins. Suivi des bandes, contrôle des mortalités, alertes sanitaires et calcul automatique des marges.
+              Élevage multi-espèces (chair, ponte, bovins lait & viande, ovins) et volet végétal intégré (cultures maraîchères, fruitières et fourragères). Suivez vos cheptels, récoltes, stocks et marges en temps réel.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <Link
-                href="/tarifs"
+                href="/signup?plan=medium"
                 className="px-6 py-3.5 rounded-xl bg-primary text-white font-semibold shadow-lg shadow-primary/20 hover:bg-primary-hover transition-all flex items-center gap-2"
               >
                 Commencer maintenant <ArrowRight className="w-4 h-4" />
@@ -125,7 +126,7 @@ export default async function LandingPage() {
                   <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-primary" /> Jusqu'à 3 utilisateurs</li>
                 </ul>
               </div>
-              <Link href="/tarifs" className="w-full py-2.5 rounded-xl border border-primary text-primary font-semibold text-center hover:bg-primary hover:text-white transition-all">
+              <Link href="/signup?plan=standard" className="w-full py-2.5 rounded-xl border border-primary text-primary font-semibold text-center hover:bg-primary hover:text-white transition-all">
                 Choisir Standard
               </Link>
             </div>
@@ -149,7 +150,7 @@ export default async function LandingPage() {
                   <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-primary" /> Jusqu'à 5 utilisateurs</li>
                 </ul>
               </div>
-              <Link href="/tarifs" className="w-full py-2.5 rounded-xl bg-primary text-white font-semibold text-center hover:bg-primary-hover transition-all">
+              <Link href="/signup?plan=medium" className="w-full py-2.5 rounded-xl bg-primary text-white font-semibold text-center hover:bg-primary-hover transition-all">
                 Choisir Médium
               </Link>
             </div>
@@ -170,7 +171,7 @@ export default async function LandingPage() {
                   <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-primary" /> Jusqu'à 7 utilisateurs</li>
                 </ul>
               </div>
-              <Link href="/tarifs" className="w-full py-2.5 rounded-xl border border-surface-border text-foreground font-semibold text-center hover:border-primary hover:text-primary transition-all">
+              <Link href="/signup?plan=premium" className="w-full py-2.5 rounded-xl border border-surface-border text-foreground font-semibold text-center hover:border-primary hover:text-primary transition-all">
                 Choisir Prémium
               </Link>
             </div>

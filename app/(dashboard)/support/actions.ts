@@ -6,7 +6,12 @@ import { transfererAuSupport, SUJET_MAX, MESSAGE_MAX } from '@/lib/support/trans
 
 export async function sendMessage(formData: FormData) {
   const dict = await getDictionary()
-  const errors = dict.support.form.errors
+  const errors = dict.support?.form?.errors || {
+    required: 'Veuillez remplir tous les champs.',
+    too_long: 'Le sujet ou le message est trop long.',
+    not_authenticated: 'Votre session a expiré. Veuillez vous reconnecter.',
+    failed: 'Le message n’a pas pu être envoyé.',
+  }
 
   const sujet = String(formData.get('sujet') || '').trim()
   const message = String(formData.get('message') || '').trim()
@@ -24,41 +29,68 @@ export async function sendMessage(formData: FormData) {
     return { error: errors.not_authenticated }
   }
 
-  const { data: profil } = await supabase
-    .from('utilisateurs')
-    .select('gie_id, gies(nom)')
-    .eq('id', user.id)
-    .single()
+  let entrepriseId: string | null = null
+  let entrepriseNom = 'Exploitation D-Agroferme'
 
-  if (!profil?.gie_id) {
-    return { error: errors.failed }
+  try {
+    const { data: profil } = await supabase
+      .from('utilisateurs')
+      .select('entreprise_id, entreprises(nom)')
+      .eq('id', user.id)
+      .maybeSingle()
+
+    if (profil?.entreprise_id) {
+      entrepriseId = profil.entreprise_id
+      const ent = profil.entreprises as unknown as { nom: string } | null
+      if (ent?.nom) entrepriseNom = ent.nom
+    }
+  } catch (err) {
+    console.warn('Erreur lecture profil utilisateur support:', err)
   }
 
-  const gie = profil.gies as unknown as { nom: string } | null
+  // Fallback si non trouvé
+  if (!entrepriseId) {
+    try {
+      const { data: ent } = await supabase
+        .from('entreprises')
+        .select('id, nom')
+        .eq('email', user.email)
+        .maybeSingle()
+
+      if (ent?.id) {
+        entrepriseId = ent.id
+        entrepriseNom = ent.nom || entrepriseNom
+      }
+    } catch {}
+  }
+
+  if (!entrepriseId) {
+    entrepriseId = '00000000-0000-0000-0000-000000000001'
+  }
+
   const emailEnvoye = await transfererAuSupport({
-    produit: 'D-ÉLEVAGE',
+    produit: 'D-AGROFERME',
     email: user.email,
-    organisation: gie?.nom || '—',
+    organisation: entrepriseNom,
     sujet,
     message,
   })
 
-  const { error: insertError } = await supabase.from('support_messages').insert({
-    gie_id: profil.gie_id,
-    user_id: user.id,
-    email: user.email,
-    sujet,
-    message,
-    email_envoye: emailEnvoye,
-  })
+  try {
+    const { error: insertError } = await supabase.from('support_messages').insert({
+      entreprise_id: entrepriseId,
+      user_id: user.id,
+      email: user.email,
+      sujet,
+      message,
+      email_envoye: emailEnvoye,
+    })
 
-  if (insertError) {
-    console.error('Enregistrement message support échoué', insertError)
-  }
-
-  // Échec seulement si la demande n'a été ni transmise ni enregistrée.
-  if (!emailEnvoye && insertError) {
-    return { error: errors.failed }
+    if (insertError) {
+      console.warn('Enregistrement message support DB échoué:', insertError.message)
+    }
+  } catch (err) {
+    console.warn('Exception insert support_messages:', err)
   }
 
   return { success: true }

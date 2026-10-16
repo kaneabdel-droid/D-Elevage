@@ -29,8 +29,8 @@
       "online_badge": "En ligne",
       "coming_soon_badge": "Bientôt disponible",
       "siggie_desc": "Le Système Intégré de Gestion de Groupement d'Intérêt Économique et entreprises assimilées. Gérez vos membres, campagnes agricoles, intrants et trésorerie en un clic et bien plus.",
-      "discover_link": "Découvrir D-ÉLEVAGE",
-      "subscribe_link": "S'abonner à D-ÉLEVAGE",
+      "discover_link": "Découvrir D-AGROFERME",
+      "subscribe_link": "S'abonner à D-AGROFERME",
       "dquinca_desc": "La solution de gestion pour quincailleries en Afrique. Suivez vos stocks, vos ventes et la performance de vos magasins en toute simplicité.",
       "discover_link_dquinca": "Découvrir D-QUINCA",
       "subscribe_link_dquinca": "S'abonner à D-QUINCA",
@@ -102,7 +102,7 @@
     }
   },
   "decouvrir": {
-    "meta_title": "Découvrir D-ÉLEVAGE - Comment ça marche",
+    "meta_title": "Découvrir D-AGROFERME - Comment ça marche",
     "back_home": "Retour à l'accueil",
     "hero_title_prefix": "Comment fonctionne",
     "hero_desc": "De la création de votre compte à la gestion quotidienne de votre élevage : ce que vous obtenez, comment ça se passe, et ce qui change selon votre forfait.",
@@ -123,7 +123,7 @@
     "modules_desc": "Chaque forfait supérieur inclut tout ce qui précède, plus ses propres modules.",
     "choose_prefix": "Choisir",
     "cta_text": "Démarrer mon essai gratuit",
-    "demo_title": "Essayez D-ÉLEVAGE en direct",
+    "demo_title": "Essayez D-AGROFERME en direct",
     "demo_desc": "Accédez en un clic au GIE de démonstration WaloAgro pour explorer toutes les fonctionnalités avant de créer votre propre compte.",
     "demo_login_btn": "Essayer la démo maintenant",
     "demo_note": "Cet espace est partagé entre tous les visiteurs : n'y saisissez pas d'informations sensibles.",
@@ -149,56 +149,67 @@
   },
   "auth": {
     "login": {
-      "title": "Connexion à D-ÉLEVAGE",
-      "desc": "Système Intégré de Gestion d'Élevage Multi-espèces",
-      "email": "Adresse e-mail",
-      "password": "Mot de passe",
-      "forgot": "Mot de passe oublié ?",
-      "btn": "Se connecter",
-      "no_account": "Votre élevage n'a pas encore de compte ?",
-      "signup": "Inscrivez votre élevage"
+      "title": "Sign In to D-AGROFERME",
+      "desc": "Integrated Agro-Pastoral Management System",
+      "email": "Email Address",
+      "password": "Password",
+      "forgot": "Forgot Password?",
+      "btn": "Sign In",
+      "no_account": "Does your farm not have an account yet?",
+      "signup": "Register Your Farm"
     },
     "signup": {
-      "title": "Créer un compte D-ÉLEVAGE",
-      "desc": "Inscrivez votre exploitation pour commencer à gérer vos bandes et cheptels.",
-      "gie_name": "Nom de l'exploitation / Ferme",
-      "email": "Adresse e-mail",
-      "password": "Mot de passe",
-      "btn": "S'inscrire",
-      "has_account": "Vous avez déjà un compte ?",
-      "login": "Connectez-vous",
-      "country": "Pays",
-      "other_country": "Autre pays",
-      "other_country_name": "Nom de votre pays",
-      "usd_note": "Hors des pays listés, l’abonnement se paie par carte bancaire en dollars US et les montants s’affichent sans unité."
+      "title": "Create a D-AGROFERME Account",
+      "desc": "Register your farm to start tracking livestock, crops and harvests.",
+      "gie_name": "Farm / Agricultural Company Name",
+      "email": "Email Address",
+      "password": "Password",
+      "btn": "Sign Up",
+      "has_account": "Already have an account?",
+      "login": "Sign In",
+      "country": "Country",
+      "other_country": "Other Country",
+      "other_country_name": "Your Country Name",
+      "usd_note": "For countries not listed, subscriptions are paid in US Dollars and amounts are displayed unitless.",
+      "manager_name": "Manager / Payer Full Name",
+      "phone": "Phone / WhatsApp number",
+      "address": "City / Farm Location",
+      "activities": "Farm Sectors & Activities",
+      "plan_choice": "Desired Subscription Plan",
+      "trial_guarantee": "14 days free trial included on selected plan • No commitment"
     },
     "forgot_password": {
-      "title": "Mot de passe oublié",
-      "desc": "Entrez votre adresse email et nous vous enverrons un lien pour réinitialiser votre mot de passe.",
-      "email": "Adresse e-mail",
-      "submit": "Envoyer le lien",
-      "back_to_login": "Retour à la connexion"
+      "title": "Forgot Password",
+      "desc": "Enter your email address and we will send you a reset link.",
+      "email": "Email Address",
+      "submit": "Send Reset Link",
+      "back_to_login": "Back to Sign In"
     }
   },
   "sidebar": {
-    "dashboard": "Tableau de bord",
-    "membres": "Membres",
-    "campagnes": "Campagnes",
-    "intrants": "Intrants & Stock",
-    "distribution": "Distribution",
-    "credits": "Crédits Bancaires",
-    "facturation": "Facturation",
-    "remboursements": "Remboursements",
-    "tresorerie": "Trésorerie",
-    "materiel": "Matériel",
-    "bilans": "Bilans & Relevés",
-    "abonnement": "Abonnement",
-    "parametres": "Paramètres",
-    "support": "Aide & Support",
-    "logout": "Déconnexion",
-    "pos_pharma": "Point de Vente",
-    "stock_pharma": "Stocks (Pharma)",
-    "commandes_pharma": "Commandes Labo"
+    "dashboard": "Dashboard",
+    "bandes": "Flocks & Poultry",
+    "animaux": "Cattle & Livestock",
+    "suivi": "Daily Monitoring",
+    "sanitaire": "Health & Withdrawal",
+    "stocks": "Feed & Veterinary",
+    "batiments": "Barns & Pens",
+    "finances": "Finances & Margins",
+    "vegetal": "Crop Production",
+    "parcelles": "Crops & Plots",
+    "recoltes": "Harvests & Yields",
+    "stocks_vegetaux": "Crop Inventory",
+    "ventes_vegetales": "Crop Sales",
+    "fourrage": "Forage Synergy",
+    "abonnement": "Subscription",
+    "parametres": "Farm Settings",
+    "support": "Help & Support",
+    "logout": "Sign Out",
+    "section_pilotage": "Management",
+    "section_vegetal": "Crop Production",
+    "section_elevage": "Livestock & Herd",
+    "section_stocks_finances": "Inventory & Finances",
+    "section_admin": "Administration"
   },
   "header": {
     "admin": "Admin",
@@ -206,48 +217,23 @@
     "close_sidebar": "Fermer la barre latérale"
   },
   "dashboard": {
-    "title": "Tableau de bord",
-    "welcome": "Bienvenue sur D-PHARMA. Voici un résumé de votre officine.",
+    "title": "Dashboard",
+    "welcome": "Welcome to D-AGROFERME. Here is an overview of your agricultural enterprise.",
     "stats": {
-      "members": "Membres Inscrits",
-      "members_desc": "Dans la coopérative",
-      "season": "Campagne Actuelle",
-      "season_none": "Aucune",
-      "season_active": "En cours",
-      "season_done": "Terminée",
-      "repayment": "Taux de Remboursement",
-      "repayment_desc": "Sur la campagne",
-      "equipment": "Parc Matériel",
-      "equipment_link": "Voir les équipements"
+      "bandes": "Active Flocks",
+      "animaux": "Tagged Livestock",
+      "alertes": "Health Alerts",
+      "stocks": "Feed & Crop Inventory"
     },
-    "finance": {
-      "title": "Aperçu Financier",
-      "view_journal": "Voir le journal",
-      "balance": "Solde de la Trésorerie",
-      "inflows": "Total Entrées",
-      "outflows": "Total Sorties"
-    },
-    "recent_members": {
-      "title": "Membres Récents",
-      "registered": "Inscription de",
-      "empty": "Aucun membre récent.",
-      "view_all": "Voir tous les membres"
-    },
-    "pharma_stats": {
-      "sales_today": "Ventes du jour",
-      "sales_today_desc": "Chiffre d'affaires",
-      "low_stock": "Stock Faible",
-      "low_stock_desc": "Médicaments à réapprovisionner",
-      "pending_orders": "Commandes Labo",
-      "pending_orders_desc": "En attente",
-      "expired": "Périmés ou proches",
-      "expired_desc": "À retirer des rayons"
-    },
-    "recent_sales": {
-      "title": "Dernières ventes",
-      "empty": "Aucune vente récente",
-      "pos_link": "Aller au Point de Vente",
-      "sale_of": "Ticket N°"
+    "elevage_stats": {
+      "bandes_actives": "Current Flocks",
+      "bandes_actives_desc": "Poultry & small stock",
+      "cheptel": "Tagged Ruminants",
+      "cheptel_desc": "Tracked by ear-tag",
+      "latence_alerte": "Lots in Withdrawal",
+      "latence_desc": "Active safety withdrawal period",
+      "mortalite": "Viability Rate",
+      "mortalite_desc": "Herd average"
     }
   },
   "membres": {
@@ -413,7 +399,7 @@
     }
   },
   "parametres": {
-    "title": "Paramètres",
+    "title": "Farm Settings",
     "subtitle": "Informations de l'élevage, affichées sur les documents imprimés (factures, reçus).",
     "logoTitle": "Logo",
     "changeLogo": "Changer le logo",
@@ -424,13 +410,35 @@
     "companyName": "Dénomination",
     "address": "Adresse",
     "phone": "Téléphone",
-    "email": "E-mail",
+    "email": "Email Address",
     "identification": "Identification fiscale (NINEA, RCCM ou équivalent)",
     "identificationPlaceholder": "Ex : NINEA 0012345678",
     "currency": "Devise de travail",
     "currencyHint": "Utilisée pour tous les montants affichés et imprimés dans l'application.",
     "saved": "Enregistré",
-    "logoSaved": "Logo mis à jour"
+    "logoSaved": "Logo mis à jour",
+    "desc": "Configure your farm identity, active agricultural branches, currency and navigation preferences.",
+    "general_title": "Farm Configuration",
+    "general_subtitle": "Farm identity, active branches and navigation layout mode",
+    "activities_title": "Active Farm Branches & Activities",
+    "activities_desc": "The system automatically hides modules not relevant to your farm.",
+    "act_volaille": "Poultry & Birds",
+    "act_volaille_desc": "Broilers, layers, ducks, guinea fowl",
+    "act_ruminants": "Cattle & Ruminants",
+    "act_ruminants_desc": "Beef cattle, sheep (Ladoum, etc.), goats, ear-tag tracking",
+    "act_lait": "Dairy Production",
+    "act_lait_desc": "Daily milking, dairy cows, milk collection and delivery",
+    "act_vegetal": "Crop Production",
+    "act_vegetal_desc": "Vegetable, fruit and forage farming, harvests and crop stocks (Premium Plan)",
+    "menu_layout_title": "Navigation Menu Layout",
+    "menu_layout_desc": "Choose the navigation layout best suited for your workflow (Horizontal bar or Sidebar).",
+    "nom": "Agrofarm / Company Name",
+    "telephone": "Contact Phone Number",
+    "adresse": "Farm Location / Address",
+    "devise": "Primary Currency",
+    "save": "Save Settings",
+    "saving": "Saving...",
+    "success": "Settings updated successfully."
   },
   "common": {
     "cancel": "Annuler",
@@ -819,29 +827,29 @@
     "empty": "Aucune donnée budgétaire pour cette campagne."
   },
   "support": {
-    "title": "Aide & Support",
-    "desc": "Besoin d'aide pour utiliser D-ÉLEVAGE ? Notre équipe est à votre disposition pour vous accompagner.",
-    "phone": "Téléphone",
-    "phone_hours": "Lun-Ven de 9h à 18h",
-    "email": "Email",
-    "email_desc": "Assistance technique",
-    "form_title": "Envoyez-nous un message",
-    "form_desc": "Vous rencontrez un bug ou avez une question spécifique ? Remplissez ce formulaire et nous vous répondrons directement par email.",
+    "title": "Help & Support",
+    "desc": "Need help using D-AGROFERME? Our support team is at your service.",
+    "phone": "Phone Support",
+    "phone_hours": "Mon-Fri from 9am to 6pm",
+    "email": "Email Support",
+    "email_desc": "Technical assistance",
+    "form_title": "Send us a message",
+    "form_desc": "Encountering an issue or have a specific question? Fill out this form and we will reply promptly by email.",
     "form": {
-      "subject": "Sujet de votre demande",
-      "subject_placeholder": "Ex: Problème avec une campagne, Question sur la facturation...",
-      "message": "Message détaillé",
-      "message_placeholder": "Décrivez votre problème ou votre question en détail...",
-      "send": "Envoyer le message",
-      "sending": "Envoi en cours...",
-      "sent_title": "Message envoyé avec succès !",
-      "sent_desc": "Notre équipe de support a bien reçu votre message et vous répondra dans les plus brefs délais.",
-      "send_another": "Envoyer un autre message",
+      "subject": "Request subject",
+      "subject_placeholder": "Ex: Question about crop stock, billing inquiry...",
+      "message": "Detailed message",
+      "message_placeholder": "Describe your issue or question in detail...",
+      "send": "Send message",
+      "sending": "Sending...",
+      "sent_title": "Message sent successfully!",
+      "sent_desc": "Our support team has received your message and will respond as soon as possible.",
+      "send_another": "Send another message",
       "errors": {
-        "required": "Veuillez remplir tous les champs.",
-        "too_long": "Le sujet (200 caractères max) ou le message (5000 caractères max) est trop long.",
-        "not_authenticated": "Votre session a expiré. Veuillez vous reconnecter.",
-        "failed": "Le message n'a pas pu être envoyé. Réessayez ou écrivez-nous à support@dembasolution.com."
+        "required": "Please fill in all fields.",
+        "too_long": "The subject (max 200 chars) or message (max 5000 chars) is too long.",
+        "not_authenticated": "Your session has expired. Please log in again.",
+        "failed": "The message could not be sent. Please retry or email support@dembasolution.com directly."
       }
     }
   },
@@ -1244,7 +1252,7 @@
   "abonnement": {
     "title": "Mon Abonnement",
     "manage_desc": "Gérez le forfait de votre élevage :",
-    "trial_locked": "Votre période d'essai est terminée et l'accès à votre espace a été verrouillé. Choisissez un moyen de paiement ci-dessous pour continuer à utiliser D-ÉLEVAGE.",
+    "trial_locked": "Votre période d'essai est terminée et l'accès à votre espace a été verrouillé. Choisissez un moyen de paiement ci-dessous pour continuer à utiliser D-AGROFERME.",
     "trial_remaining_prefix": "Il vous reste",
     "trial_remaining_day": "jour",
     "trial_remaining_days": "jours",
@@ -1511,7 +1519,7 @@
   "guide": {
     "meta": {
       "back": "Retour à l’accueil",
-      "pageTitle": "Guide d'utilisation D-ÉLEVAGE",
+      "pageTitle": "Guide d'utilisation D-AGROFERME",
       "toc": "Sommaire du guide",
       "menu": "Menu",
       "important": "Règle sanitaire",
@@ -1524,13 +1532,13 @@
     },
     "hero": {
       "eyebrow": "Guide de prise en main",
-      "title": "D-ÉLEVAGE",
+      "title": "D-AGROFERME",
       "subtitle": "La plateforme intégrée de gestion d'exploitations d'élevage : bandes avicoles, cheptel individuel (bovins, ovins, caprins), sécurité sanitaire avec blocage anti-vente, et suivi des marges.",
-      "intro": "Ce guide vous présente la méthode pour exploiter tout le potentiel de D-ÉLEVAGE : commencez par configurer vos bâtiments et enclos, enregistrez vos cohortes ou animaux individuels, assurez le suivi quotidien, et pilotez vos marges nettes."
+      "intro": "Ce guide vous présente la méthode pour exploiter tout le potentiel de D-AGROFERME : commencez par configurer vos bâtiments et enclos, enregistrez vos cohortes ou animaux individuels, assurez le suivi quotidien, et pilotez vos marges nettes."
     },
     "overview": {
       "id": "apercu",
-      "title": "D-ÉLEVAGE en 6 piliers",
+      "title": "D-AGROFERME en 6 piliers",
       "lead": "Une approche rigoureuse pour maximiser le taux de survie, respecter les délais d'attente médicamenteux et rentabiliser chaque cycle de production.",
       "cards": [
         {
@@ -1645,7 +1653,7 @@
               {
                 "callout": {
                   "l": "Règle d'or de sécurité sanitaire",
-                  "x": "Tout traitement antibiotique ou antiparasitaire impose un délai de retrait obligatoire (ex: 7 à 14 jours). D-ÉLEVAGE verrouille formellement toute tentative de vente de l'animal ou de la bande jusqu'à l'expiration complète de cette période."
+                  "x": "Tout traitement antibiotique ou antiparasitaire impose un délai de retrait obligatoire (ex: 7 à 14 jours). D-AGROFERME verrouille formellement toute tentative de vente de l'animal ou de la bande jusqu'à l'expiration complète de cette période."
                 }
               }
             ]
@@ -1674,7 +1682,7 @@
             "menu": "Finances & Marges",
             "blocks": [
               {
-                "p": "D-ÉLEVAGE cumule le coût des sujets à l'achat, l'ensemble des aliments consommés et les soins vétérinaires, puis les soustrait du chiffre d'affaires pour afficher la marge nette exacte par bande ou par lot."
+                "p": "D-AGROFERME cumule le coût des sujets à l'achat, l'ensemble des aliments consommés et les soins vétérinaires, puis les soustrait du chiffre d'affaires pour afficher la marge nette exacte par bande ou par lot."
               }
             ]
           }
@@ -1702,11 +1710,24 @@
           {
             "callout": {
               "l": "Assistance Technique",
-              "x": "Notre équipe est joignable via le menu Aide & Support pour toute question sur la prise en main de votre logiciel D-ÉLEVAGE."
+              "x": "Notre équipe est joignable via le menu Aide & Support pour toute question sur la prise en main de votre logiciel D-AGROFERME."
             }
           }
         ]
       }
     ]
+  },
+  "vegetal": {
+    "title": "Crop & Plant Production",
+    "desc": "Monitoring of vegetable, fruit and forage crops, harvest inventory and sales.",
+    "kpi_surface": "Cultivated Area",
+    "kpi_recoltes": "Total Harvested",
+    "kpi_valeur_stock": "Crop Stock Value",
+    "kpi_ventes": "Crop Sales",
+    "tab_parcelles": "Crops & Plots",
+    "tab_recoltes": "Harvests & Yields",
+    "tab_stocks": "Inventory & Warehouses",
+    "tab_ventes": "Crop Sales",
+    "tab_fourrage": "Forage & Livestock Synergy"
   }
 }

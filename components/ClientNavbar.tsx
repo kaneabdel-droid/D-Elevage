@@ -22,21 +22,21 @@ export default function ClientNavbar({ dict, currentLang }: { dict?: any, curren
             <span className="text-foreground-muted/70 hidden sm:inline">— Portail principal</span>
           </a>
           <span className="text-[11px] text-foreground-muted hidden md:inline">
-            Gestion d&apos;Élevage Multi-espèces & Rentabilité
+            Gestion Agro-Pastorale Intégrée (Élevage & Cultures Végétales)
           </span>
         </div>
       </div>
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between gap-4">
-          {/* Logo de marque D-ÉLEVAGE */}
+          {/* Logo de marque D-AGROFERME */}
           <Link href="/" className="flex items-center gap-2.5 shrink-0">
             <span className="w-9 h-9 rounded-xl bg-primary/10 flex items-center justify-center text-primary shrink-0">
               <Bird className="w-5 h-5" />
             </span>
             <div className="flex flex-col">
               <span className="text-lg sm:text-xl font-bold font-heading text-primary leading-tight whitespace-nowrap">
-                D-ÉLEVAGE
+                D-AGROFERME
               </span>
               <span className="text-[10px] text-foreground-muted -mt-0.5 tracking-wider uppercase font-semibold hidden sm:inline whitespace-nowrap">
                 Demba Solution
@@ -88,7 +88,7 @@ export default function ClientNavbar({ dict, currentLang }: { dict?: any, curren
               Connexion
             </Link>
             <Link
-              href="/tarifs"
+              href="/signup?plan=medium&action=abonnement"
               className="hidden sm:inline-flex rounded-full bg-primary px-4 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-primary-hover transition-all whitespace-nowrap"
             >
               S&apos;abonner
@@ -158,7 +158,7 @@ export default function ClientNavbar({ dict, currentLang }: { dict?: any, curren
               Connexion
             </Link>
             <Link
-              href="/tarifs"
+              href="/signup?plan=medium&action=abonnement"
               onClick={() => setMobileMenuOpen(false)}
               className="w-full text-center py-2 rounded-xl bg-primary text-white font-semibold text-sm"
             >
