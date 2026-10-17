@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import LanguageSelector from '@/components/LanguageSelector'
+import { OfflineSyncBar } from '@/components/offline/OfflineSyncBar'
 import { 
   LayoutDashboard, 
   Menu,
@@ -374,6 +375,7 @@ export default function ClientLayout({
               </div>
 
               <div className="flex items-center gap-4">
+                <OfflineSyncBar />
                 <LanguageSelector currentLang={locale} />
                 <div className="text-xs font-medium text-foreground-muted">
                   <span className="capitalize">{role}</span>
@@ -486,6 +488,7 @@ export default function ClientLayout({
                 <span className="text-xs text-foreground-muted hidden sm:inline">• {entrepriseNom}</span>
               </div>
               <div className="flex items-center gap-x-3">
+                <OfflineSyncBar />
                 <LanguageSelector currentLang={locale} />
                 <form action="/auth/signout" method="post" className="lg:hidden">
                   <button type="submit" className="text-danger p-2">

@@ -1,0 +1,17 @@
+{
+  "name": "D-FERME — Gestion Agro-Pastorale Intégrée",
+  "short_name": "D-FERME",
+  "description": "Application de gestion d'exploitations agricoles, élevage, volaille et bétail avec mode hors-ligne",
+  "start_url": "/dashboard",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#16a34a",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
