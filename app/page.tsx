@@ -6,7 +6,11 @@ import {
   TrendingUp,
   ArrowRight,
   CheckCircle2,
-  Sprout
+  Sprout,
+  Mail,
+  Phone,
+  MessageSquare,
+  MapPin
 } from 'lucide-react'
 import ClientNavbar from '@/components/ClientNavbar'
 import { getDictionary, getLocale } from '@/dictionaries'
@@ -174,6 +178,63 @@ export default async function LandingPage() {
               <Link href="/signup?plan=premium" className="w-full py-2.5 rounded-xl border border-surface-border text-foreground font-semibold text-center hover:border-primary hover:text-primary transition-all">
                 {pricing.premium_btn || 'Choisir Prémium'}
               </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Section Contact */}
+      <section id="contact" className="py-20 bg-surface border-t border-surface-border">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-4xl mx-auto text-center mb-12">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 text-primary text-xs font-semibold uppercase tracking-wider mb-4">
+              <MessageSquare className="w-4 h-4" /> Support & Assistance
+            </div>
+            <h2 className="text-3xl font-bold font-heading mb-4 text-foreground">
+              Contactez l&apos;équipe D-Ferme & Demba Solution
+            </h2>
+            <p className="text-foreground-muted max-w-xl mx-auto">
+              Une question sur la plateforme, besoin d&apos;un accompagnement pour votre exploitation ou d&apos;une démonstration personnalisée ? Nos conseillers sont à votre disposition.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+            {/* WhatsApp Direct */}
+            <a
+              href="https://wa.me/221775012754?text=Bonjour,%20je%20souhaite%20des%20informations%20sur%20D-Ferme"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-6 rounded-2xl bg-background border border-surface-border hover:border-primary hover:shadow-md transition-all text-center flex flex-col items-center group"
+            >
+              <div className="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-600 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                <Phone className="w-6 h-6" />
+              </div>
+              <h3 className="font-bold text-foreground text-base mb-1">WhatsApp & Téléphone</h3>
+              <p className="text-xs text-foreground-muted mb-3">Réponse rapide 7j/7</p>
+              <span className="font-semibold text-primary text-sm">+221 77 501 27 54</span>
+            </a>
+
+            {/* Email */}
+            <a
+              href="mailto:contact@dembasolution.com"
+              className="p-6 rounded-2xl bg-background border border-surface-border hover:border-primary hover:shadow-md transition-all text-center flex flex-col items-center group"
+            >
+              <div className="w-12 h-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                <Mail className="w-6 h-6" />
+              </div>
+              <h3 className="font-bold text-foreground text-base mb-1">E-mail Officiel</h3>
+              <p className="text-xs text-foreground-muted mb-3">Support commercial et technique</p>
+              <span className="font-semibold text-primary text-sm">contact@dembasolution.com</span>
+            </a>
+
+            {/* Localisation */}
+            <div className="p-6 rounded-2xl bg-background border border-surface-border text-center flex flex-col items-center">
+              <div className="w-12 h-12 rounded-xl bg-amber-500/10 text-amber-600 flex items-center justify-center mb-4">
+                <MapPin className="w-6 h-6" />
+              </div>
+              <h3 className="font-bold text-foreground text-base mb-1">Siège & Déploiement</h3>
+              <p className="text-xs text-foreground-muted mb-3">Sénégal & Sous-région UEMOA</p>
+              <span className="font-semibold text-foreground text-sm">Dakar, Sénégal</span>
             </div>
           </div>
         </div>
