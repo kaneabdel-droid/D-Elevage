@@ -21,6 +21,8 @@ import {
   DEMO_RECOLTES 
 } from '@/lib/demo-data'
 
+import { getDictionary, getLocale } from '@/dictionaries'
+
 export const metadata = {
   title: 'Tableau de bord — D-Agroferme',
 }
@@ -28,6 +30,10 @@ export const metadata = {
 export default async function DashboardPage() {
   const tenant = await getTenantContext()
   const supabase = await createClient()
+  const locale = await getLocale()
+  const dict = await getDictionary(locale)
+  const tHeader = dict.elevage?.dashboard_header || {}
+  const tHealth = dict.elevage?.health_alert || {}
 
   const typesActivite = tenant?.typesActivite || ACTIVITES_PAR_DEFAUT
   const isPremium = tenant?.subscriptionTier === 'premium'
@@ -90,12 +96,14 @@ export default async function DashboardPage() {
   // Construction des KPI filtrés selon les activités de l'exploitation
   const stats: any[] = []
 
+  const kpi = dict.elevage?.dashboard_kpi || {}
+
   if (aVolaille) {
     stats.push({
-      name: 'Volailles & Bandes Actives',
+      name: kpi.poultry || 'Volailles & Bandes Actives',
       value: displayTotalBandes,
       icon: Bird,
-      desc: isDemo ? '4 252 sujets en croissance' : 'Poulets de chair & pondeuses',
+      desc: isDemo ? '4 252 sujets' : (kpi.poultry_sub || 'Poulets de chair & pondeuses'),
       color: 'text-primary',
       bg: 'bg-primary/10',
       href: '/elevage/bandes'
@@ -104,10 +112,10 @@ export default async function DashboardPage() {
 
   if (aRuminants) {
     stats.push({
-      name: 'Cheptel Bovins / Ruminants',
+      name: kpi.cattle || 'Cheptel Bovins / Ruminants',
       value: displayTotalAnimaux,
       icon: Beef,
-      desc: isDemo ? 'Vaches laitières, Ladoum & Caprins' : 'Suivi individuel par boucle',
+      desc: isDemo ? 'Vaches, Ladoum & Caprins' : (kpi.cattle_sub || 'Suivi individuel par boucle'),
       color: 'text-secondary',
       bg: 'bg-secondary/10',
       href: '/elevage/animaux'
@@ -116,10 +124,10 @@ export default async function DashboardPage() {
 
   if (aVegetal) {
     stats.push({
-      name: 'Cultures & Parcelles',
+      name: kpi.crops || 'Cultures & Parcelles',
       value: displayTotalParcelles,
       icon: Sprout,
-      desc: isDemo ? '13.5 ha (Maraîchage & Fourrage)' : 'Suivi parcellaire & récoltes',
+      desc: isDemo ? '13.5 ha' : (kpi.crops_sub || 'Suivi parcellaire & récoltes'),
       color: 'text-emerald-600 dark:text-emerald-400',
       bg: 'bg-emerald-500/10',
       href: '/vegetal'
@@ -128,10 +136,10 @@ export default async function DashboardPage() {
 
   if (aLait) {
     stats.push({
-      name: 'Collecte Laitière',
+      name: kpi.dairy || 'Collecte Laitière',
       value: '240 L/j',
       icon: Milk,
-      desc: 'Production quotidienne de traite',
+      desc: kpi.dairy_sub || 'Production quotidienne de traite',
       color: 'text-blue-600 dark:text-blue-400',
       bg: 'bg-blue-500/10',
       href: '/elevage/suivi'
@@ -139,10 +147,10 @@ export default async function DashboardPage() {
   }
 
   stats.push({
-    name: 'Santé & Latence Sanitaire',
+    name: kpi.health || 'Santé & Latence Sanitaire',
     value: displayAlertesLatence,
     icon: ShieldAlert,
-    desc: displayAlertesLatence > 0 ? 'Délai de retrait actif' : 'Aucun sujet sous restriction',
+    desc: displayAlertesLatence > 0 ? (kpi.health_active || 'Délai de retrait actif') : (kpi.health_ok || 'Aucun sujet sous restriction'),
     color: displayAlertesLatence > 0 ? 'text-danger' : 'text-success',
     bg: displayAlertesLatence > 0 ? 'bg-danger/10' : 'bg-success/10',
     href: '/elevage/sanitaire'
@@ -154,10 +162,10 @@ export default async function DashboardPage() {
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
           <h1 className="text-2xl sm:text-3xl font-bold font-heading text-foreground">
-            Tableau de Bord — D-Agroferme
+            {tHeader.title || 'Tableau de Bord — D-Agroferme'}
           </h1>
           <p className="text-sm text-foreground-muted mt-1">
-            Pilotage agro-pastoral intégré de votre exploitation : cheptel, cultures et finances.
+            {tHeader.subtitle || 'Pilotage agro-pastoral intégré de votre exploitation : cheptel, cultures et finances.'}
           </p>
         </div>
         <div className="flex items-center gap-2.5 flex-wrap">
@@ -167,7 +175,7 @@ export default async function DashboardPage() {
               className="px-3.5 py-2 rounded-xl bg-primary text-white font-semibold text-xs hover:bg-primary-hover shadow-xs transition-all flex items-center gap-1.5"
             >
               <Bird className="w-4 h-4" />
-              <span>Bandes</span>
+              <span>{tHeader.btn_bandes || 'Bandes'}</span>
             </Link>
           )}
           {aVegetal && (
@@ -176,14 +184,14 @@ export default async function DashboardPage() {
               className="px-3.5 py-2 rounded-xl bg-emerald-600 text-white font-semibold text-xs hover:bg-emerald-700 shadow-xs transition-all flex items-center gap-1.5"
             >
               <Sprout className="w-4 h-4" />
-              <span>Volet Végétal</span>
+              <span>{tHeader.btn_vegetal || 'Volet Végétal'}</span>
             </Link>
           )}
           <Link
             href="/elevage/suivi"
             className="px-3.5 py-2 rounded-xl border border-surface-border bg-surface text-foreground font-semibold text-xs hover:border-primary transition-all flex items-center gap-1.5"
           >
-            <span>Suivi Quotidien</span>
+            <span>{tHeader.btn_suivi || 'Suivi Quotidien'}</span>
           </Link>
         </div>
       </div>
@@ -193,9 +201,9 @@ export default async function DashboardPage() {
         <div className="p-4 rounded-xl border border-danger/30 bg-danger/5 flex items-start gap-3">
           <AlertTriangle className="w-5 h-5 text-danger shrink-0 mt-0.5" />
           <div className="flex-1">
-            <h4 className="text-sm font-semibold text-danger">Alerte de Sécurité Sanitaire : Délais de Latence Actifs ({displayAlertesLatence})</h4>
+            <h4 className="text-sm font-semibold text-danger">{tHealth.title || 'Alerte de Sécurité Sanitaire : Délais de Latence Actifs'} ({displayAlertesLatence})</h4>
             <p className="text-xs text-foreground-muted mt-0.5">
-              Des animaux sont sous délai de retrait médical. La consommation et la vente de leur lait ou viande sont consignées pour protéger la santé des consommateurs.
+              {tHealth.desc || 'Des animaux sont sous délai de retrait médical. La consommation et la vente de leur lait ou viande sont consignées pour protéger la santé des consommateurs.'}
             </p>
           </div>
           <Link href="/elevage/sanitaire" className="text-xs font-semibold text-danger underline hover:text-danger/80 shrink-0">

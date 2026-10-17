@@ -29,8 +29,8 @@
       "online_badge": "En ligne",
       "coming_soon_badge": "Bientôt disponible",
       "siggie_desc": "Le Système Intégré de Gestion de Groupement d'Intérêt Économique et entreprises assimilées. Gérez vos membres, campagnes agricoles, intrants et trésorerie en un clic et bien plus.",
-      "discover_link": "Découvrir D-AGROFERME",
-      "subscribe_link": "S'abonner à D-AGROFERME",
+      "discover_link": "Découvrir D-FERME",
+      "subscribe_link": "S'abonner à D-FERME",
       "dquinca_desc": "La solution de gestion pour quincailleries en Afrique. Suivez vos stocks, vos ventes et la performance de vos magasins en toute simplicité.",
       "discover_link_dquinca": "Découvrir D-QUINCA",
       "subscribe_link_dquinca": "S'abonner à D-QUINCA",
@@ -102,7 +102,7 @@
     }
   },
   "decouvrir": {
-    "meta_title": "Découvrir D-AGROFERME - Comment ça marche",
+    "meta_title": "Découvrir D-FERME - Comment ça marche",
     "back_home": "Retour à l'accueil",
     "hero_title_prefix": "Comment fonctionne",
     "hero_desc": "De la création de votre compte à la gestion quotidienne de votre élevage : ce que vous obtenez, comment ça se passe, et ce qui change selon votre forfait.",
@@ -123,7 +123,7 @@
     "modules_desc": "Chaque forfait supérieur inclut tout ce qui précède, plus ses propres modules.",
     "choose_prefix": "Choisir",
     "cta_text": "Démarrer mon essai gratuit",
-    "demo_title": "Essayez D-AGROFERME en direct",
+    "demo_title": "Essayez D-FERME en direct",
     "demo_desc": "Accédez en un clic au GIE de démonstration WaloAgro pour explorer toutes les fonctionnalités avant de créer votre propre compte.",
     "demo_login_btn": "Essayer la démo maintenant",
     "demo_note": "Cet espace est partagé entre tous les visiteurs : n'y saisissez pas d'informations sensibles.",
@@ -149,7 +149,7 @@
   },
   "auth": {
     "login": {
-      "title": "تسجيل الدخول إلى D-AGROFERME",
+      "title": "تسجيل الدخول إلى D-FERME",
       "desc": "النظام المتكامل لإدارة المزارع والإنتاج الزراعي والحيواني",
       "email": "البريد الإلكتروني",
       "password": "كلمة المرور",
@@ -159,7 +159,7 @@
       "signup": "سجل مزرعتك الآن"
     },
     "signup": {
-      "title": "إنشاء حساب جديد في D-AGROFERME",
+      "title": "إنشاء حساب جديد في D-FERME",
       "desc": "سجل مزرعتك لبدء إدارة وتتبع المواشي والدواجن والمحاصيل والحصاد.",
       "gie_name": "اسم المزرعة / المؤسسة الفلاحية",
       "email": "البريد الإلكتروني",
@@ -218,7 +218,7 @@
   },
   "dashboard": {
     "title": "لوحة القيادة",
-    "welcome": "مرحباً بكم في D-AGROFERME. إليكم ملخص شامل لأنشطة مزرعتكم.",
+    "welcome": "مرحباً بكم في D-FERME. إليكم ملخص شامل لأنشطة مزرعتكم.",
     "stats": {
       "bandes": "الأفواج النشطة",
       "animaux": "المواشي المرقمة",
@@ -828,7 +828,7 @@
   },
   "support": {
     "title": "المساعدة والدعم الفني",
-    "desc": "هل تحتاج إلى مساعدة في استخدام نظام D-AGROFERME؟ فريقنا في خدمتكم لمساعدتكم.",
+    "desc": "هل تحتاج إلى مساعدة في استخدام نظام D-FERME؟ فريقنا في خدمتكم لمساعدتكم.",
     "phone": "الهاتف",
     "phone_hours": "من الإثنين إلى الجمعة (9 ص - 6 م)",
     "email": "البريد الإلكتروني",
@@ -1252,7 +1252,7 @@
   "abonnement": {
     "title": "Mon Abonnement",
     "manage_desc": "Gérez le forfait de votre élevage :",
-    "trial_locked": "Votre période d'essai est terminée et l'accès à votre espace a été verrouillé. Choisissez un moyen de paiement ci-dessous pour continuer à utiliser D-AGROFERME.",
+    "trial_locked": "Votre période d'essai est terminée et l'accès à votre espace a été verrouillé. Choisissez un moyen de paiement ci-dessous pour continuer à utiliser D-FERME.",
     "trial_remaining_prefix": "Il vous reste",
     "trial_remaining_day": "jour",
     "trial_remaining_days": "jours",
@@ -1519,7 +1519,7 @@
   "guide": {
     "meta": {
       "back": "Retour à l’accueil",
-      "pageTitle": "Guide d'utilisation D-AGROFERME",
+      "pageTitle": "Guide d'utilisation D-FERME",
       "toc": "Sommaire du guide",
       "menu": "Menu",
       "important": "Règle sanitaire",
@@ -1532,13 +1532,13 @@
     },
     "hero": {
       "eyebrow": "Guide de prise en main",
-      "title": "D-AGROFERME",
+      "title": "D-FERME",
       "subtitle": "La plateforme intégrée de gestion d'exploitations d'élevage : bandes avicoles, cheptel individuel (bovins, ovins, caprins), sécurité sanitaire avec blocage anti-vente, et suivi des marges.",
-      "intro": "Ce guide vous présente la méthode pour exploiter tout le potentiel de D-AGROFERME : commencez par configurer vos bâtiments et enclos, enregistrez vos cohortes ou animaux individuels, assurez le suivi quotidien, et pilotez vos marges nettes."
+      "intro": "Ce guide vous présente la méthode pour exploiter tout le potentiel de D-FERME : commencez par configurer vos bâtiments et enclos, enregistrez vos cohortes ou animaux individuels, assurez le suivi quotidien, et pilotez vos marges nettes."
     },
     "overview": {
       "id": "apercu",
-      "title": "D-AGROFERME en 6 piliers",
+      "title": "D-FERME en 6 piliers",
       "lead": "Une approche rigoureuse pour maximiser le taux de survie, respecter les délais d'attente médicamenteux et rentabiliser chaque cycle de production.",
       "cards": [
         {
@@ -1653,7 +1653,7 @@
               {
                 "callout": {
                   "l": "Règle d'or de sécurité sanitaire",
-                  "x": "Tout traitement antibiotique ou antiparasitaire impose un délai de retrait obligatoire (ex: 7 à 14 jours). D-AGROFERME verrouille formellement toute tentative de vente de l'animal ou de la bande jusqu'à l'expiration complète de cette période."
+                  "x": "Tout traitement antibiotique ou antiparasitaire impose un délai de retrait obligatoire (ex: 7 à 14 jours). D-FERME verrouille formellement toute tentative de vente de l'animal ou de la bande jusqu'à l'expiration complète de cette période."
                 }
               }
             ]
@@ -1682,7 +1682,7 @@
             "menu": "Finances & Marges",
             "blocks": [
               {
-                "p": "D-AGROFERME cumule le coût des sujets à l'achat, l'ensemble des aliments consommés et les soins vétérinaires, puis les soustrait du chiffre d'affaires pour afficher la marge nette exacte par bande ou par lot."
+                "p": "D-FERME cumule le coût des sujets à l'achat, l'ensemble des aliments consommés et les soins vétérinaires, puis les soustrait du chiffre d'affaires pour afficher la marge nette exacte par bande ou par lot."
               }
             ]
           }
@@ -1710,7 +1710,7 @@
           {
             "callout": {
               "l": "Assistance Technique",
-              "x": "Notre équipe est joignable via le menu Aide & Support pour toute question sur la prise en main de votre logiciel D-AGROFERME."
+              "x": "Notre équipe est joignable via le menu Aide & Support pour toute question sur la prise en main de votre logiciel D-FERME."
             }
           }
         ]
@@ -1729,5 +1729,83 @@
     "tab_stocks": "المخازن والمستودعات",
     "tab_ventes": "مبيعات المحاصيل",
     "tab_fourrage": "التكامل العلفي والحيواني"
+  },
+  "elevage": {
+    "dashboard_header": {
+      "title": "لوحة القيادة — مزرعتي",
+      "subtitle": "إدارة متكاملة للإنتاج الفلاحي والحيواني: المواشي، المحاصيل والمالية.",
+      "btn_bandes": "الأفواج والدواجن",
+      "btn_vegetal": "الإنتاج النباتي",
+      "btn_suivi": "المتابعة اليومية"
+    },
+    "health_alert": {
+      "title": "تنبيه أمان بيطري: فترة حظر استهلاك نشطة",
+      "desc": "يوجد حيوانات تحت فترة علاج وسحب بيطري. يحظر بيع أو استهلاك لحومها وحليبها حمايةً لصحة المستهلك."
+    },
+    "animaux_page": {
+      "title": "الأبقار والمجترات (تتبع برقم القرط)",
+      "subtitle": "التتبع الفردي: الأنساب، إنتاج الحليب، موازين النمو والعلاجات الصحية.",
+      "new_animal": "تسجيل رأس ماشية جديد",
+      "demo_notice": "بيانات تجريبية: قطيع الأبقار الحلوب وخراف اللادوم النخبوية الساحلية."
+    },
+    "dashboard_kpi": {
+      "poultry": "الدواجن والدفعات النشطة",
+      "poultry_sub": "دجاج التسمين والبياض",
+      "cattle": "قطيع الأبقار والمجترات",
+      "cattle_sub": "تتبع فردي برقم الأذن",
+      "crops": "المحاصيل والقطع الفلاحية",
+      "crops_sub": "متابعة القطع والحصاد",
+      "dairy": "جمع الحليب اليومي",
+      "dairy_sub": "إنتاج الحلب اليومي",
+      "health": "السلامة البيطرية وفترة السحب",
+      "health_active": "فترة سحب دوائي نشطة",
+      "health_ok": "لا توجد حيوانات قيد الحظر"
+    }
+  },
+  "landing_ferme": {
+    "brand": "D-FERME",
+    "nav": {
+      "species": "الأنواع والمواشي",
+      "pricing": "الأسعار والباقات",
+      "guide": "دليل الاستخدام",
+      "demo": "عرض حي",
+      "contact": "اتصل بنا",
+      "login": "تسجيل الدخول",
+      "subscribe": "الاشتراك"
+    },
+    "hero": {
+      "badge": "المنصة الزراعية والرعوية المتكاملة",
+      "title_1": "تحكم في أداء وربحية ",
+      "title_highlight": "مزرعتك المتكاملة",
+      "desc": "إدارة الإنتاج الحيواني متعدد الأنواع (دواجن التسمين، البياض، الأبقار الحلوب واللحوم، الأغنام) مع الإنتاج النباتي المندمج (الخضروات، الفواكه والأعلاف). تتبع قطعانك ومحاصيلك ومخزونك وهوامش أرباحك في الوقت الفعلي.",
+      "cta_start": "ابدأ الآن",
+      "cta_demo": "اكتشف العرض التوضيحي الحي"
+    },
+    "pillars": {
+      "poultry_title": "الدواجن (تسمين وبياض)",
+      "poultry_desc": "إدارة بالدفعات: معدل وضع البيض، جمع البيض، الأوزان الدورية، معامل التحويل الغذائي ومراقبة النفوق.",
+      "cattle_title": "الأبقار والمواشي (حليب ولحوم)",
+      "cattle_desc": "تتبع فردي بالرقم التسلسلي في الأذن: الحلب اليومي، الأوزان، دورات التلقيح والوجبات العلفية.",
+      "health_title": "السلامة وفترة سحب الأدوية",
+      "health_desc": "حساب آلي لفترات الانتظار بعد العلاج البيطري. حظر بصري لبيع الحيوانات التي تخضع للعلاج لحماية المستهلك.",
+      "finance_title": "الهوامش والربحية",
+      "finance_desc": "كشف مالي آلي لكل دفعة ولكل رأس: كلفة الكيلوغرام، مصاريف الأعلاف والأدوية وصافي الربح المحقق."
+    },
+    "pricing": {
+      "title": "باقات مصممة لتناسب كل مربي ومزارع",
+      "desc": "طور مشروعك بكل طمأنينة مع باقات سنوية وشهرية مرنة بدون التزام.",
+      "month": "فرنك سيفا / شهر",
+      "standard_title": "الأساسية",
+      "standard_desc": "مثالية لبدء ورشة تربية أو إنتاج فلاحي",
+      "standard_btn": "اختيار الأساسية",
+      "medium_title": "المتوسطة",
+      "medium_badge": "موصى به",
+      "medium_desc": "للمزارع في مرحلة النمو والتوسع",
+      "medium_btn": "اختيار المتوسطة",
+      "premium_title": "الممتازة",
+      "premium_desc": "إدارة مالية ومحاسبية كاملة ومتقدمة",
+      "premium_btn": "اختيار الممتازة"
+    },
+    "footer": "D-Ferme — حل برمجي متكامل من باقة DEMBA SOLUTION. جميع الحقوق محفوظة."
   }
 }

@@ -247,7 +247,7 @@ export default function ClientLayout({
             <Sprout className="w-5 h-5" />
           </div>
           <div>
-            <span className="text-lg font-bold text-primary font-heading tracking-wide">D-AGROFERME</span>
+            <span className="text-lg font-bold text-primary font-heading tracking-wide">D-FERME</span>
             <p className="text-[10px] text-foreground-muted -mt-1">Agro-Pastoral SaaS</p>
           </div>
         </div>
@@ -362,7 +362,7 @@ export default function ClientLayout({
                 </div>
                 <div>
                   <div className="flex items-center gap-2">
-                    <span className="text-lg font-bold text-primary font-heading tracking-wide">D-AGROFERME</span>
+                    <span className="text-lg font-bold text-primary font-heading tracking-wide">D-FERME</span>
                     <span className={`text-[10px] uppercase font-bold px-2 py-0.2 rounded-full ${
                       isPremium ? 'bg-amber-500/15 text-amber-600 dark:text-amber-400 border border-amber-500/30' : 'bg-primary/10 text-primary'
                     }`}>
@@ -482,7 +482,7 @@ export default function ClientLayout({
 
             <div className="flex flex-1 gap-x-4 self-stretch justify-between items-center">
               <div className="flex items-center gap-2">
-                <span className="font-heading font-bold text-primary lg:hidden">D-AGROFERME</span>
+                <span className="font-heading font-bold text-primary lg:hidden">D-FERME</span>
                 <span className="text-xs text-foreground-muted hidden sm:inline">• {entrepriseNom}</span>
               </div>
               <div className="flex items-center gap-x-3">

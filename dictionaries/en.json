@@ -29,8 +29,8 @@
       "online_badge": "En ligne",
       "coming_soon_badge": "Bientôt disponible",
       "siggie_desc": "Le Système Intégré de Gestion de Groupement d'Intérêt Économique et entreprises assimilées. Gérez vos membres, campagnes agricoles, intrants et trésorerie en un clic et bien plus.",
-      "discover_link": "Découvrir D-AGROFERME",
-      "subscribe_link": "S'abonner à D-AGROFERME",
+      "discover_link": "Découvrir D-FERME",
+      "subscribe_link": "S'abonner à D-FERME",
       "dquinca_desc": "La solution de gestion pour quincailleries en Afrique. Suivez vos stocks, vos ventes et la performance de vos magasins en toute simplicité.",
       "discover_link_dquinca": "Découvrir D-QUINCA",
       "subscribe_link_dquinca": "S'abonner à D-QUINCA",
@@ -102,7 +102,7 @@
     }
   },
   "decouvrir": {
-    "meta_title": "Découvrir D-AGROFERME - Comment ça marche",
+    "meta_title": "Découvrir D-FERME - Comment ça marche",
     "back_home": "Retour à l'accueil",
     "hero_title_prefix": "Comment fonctionne",
     "hero_desc": "De la création de votre compte à la gestion quotidienne de votre élevage : ce que vous obtenez, comment ça se passe, et ce qui change selon votre forfait.",
@@ -123,7 +123,7 @@
     "modules_desc": "Chaque forfait supérieur inclut tout ce qui précède, plus ses propres modules.",
     "choose_prefix": "Choisir",
     "cta_text": "Démarrer mon essai gratuit",
-    "demo_title": "Essayez D-AGROFERME en direct",
+    "demo_title": "Essayez D-FERME en direct",
     "demo_desc": "Accédez en un clic au GIE de démonstration WaloAgro pour explorer toutes les fonctionnalités avant de créer votre propre compte.",
     "demo_login_btn": "Essayer la démo maintenant",
     "demo_note": "Cet espace est partagé entre tous les visiteurs : n'y saisissez pas d'informations sensibles.",
@@ -149,7 +149,7 @@
   },
   "auth": {
     "login": {
-      "title": "Sign In to D-AGROFERME",
+      "title": "Sign In to D-FERME",
       "desc": "Integrated Agro-Pastoral Management System",
       "email": "Email Address",
       "password": "Password",
@@ -159,7 +159,7 @@
       "signup": "Register Your Farm"
     },
     "signup": {
-      "title": "Create a D-AGROFERME Account",
+      "title": "Create a D-FERME Account",
       "desc": "Register your farm to start tracking livestock, crops and harvests.",
       "gie_name": "Farm / Agricultural Company Name",
       "email": "Email Address",
@@ -218,7 +218,7 @@
   },
   "dashboard": {
     "title": "Dashboard",
-    "welcome": "Welcome to D-AGROFERME. Here is an overview of your agricultural enterprise.",
+    "welcome": "Welcome to D-FERME. Here is an overview of your agricultural enterprise.",
     "stats": {
       "bandes": "Active Flocks",
       "animaux": "Tagged Livestock",
@@ -828,7 +828,7 @@
   },
   "support": {
     "title": "Help & Support",
-    "desc": "Need help using D-AGROFERME? Our support team is at your service.",
+    "desc": "Need help using D-FERME? Our support team is at your service.",
     "phone": "Phone Support",
     "phone_hours": "Mon-Fri from 9am to 6pm",
     "email": "Email Support",
@@ -1252,7 +1252,7 @@
   "abonnement": {
     "title": "Mon Abonnement",
     "manage_desc": "Gérez le forfait de votre élevage :",
-    "trial_locked": "Votre période d'essai est terminée et l'accès à votre espace a été verrouillé. Choisissez un moyen de paiement ci-dessous pour continuer à utiliser D-AGROFERME.",
+    "trial_locked": "Votre période d'essai est terminée et l'accès à votre espace a été verrouillé. Choisissez un moyen de paiement ci-dessous pour continuer à utiliser D-FERME.",
     "trial_remaining_prefix": "Il vous reste",
     "trial_remaining_day": "jour",
     "trial_remaining_days": "jours",
@@ -1519,7 +1519,7 @@
   "guide": {
     "meta": {
       "back": "Retour à l’accueil",
-      "pageTitle": "Guide d'utilisation D-AGROFERME",
+      "pageTitle": "Guide d'utilisation D-FERME",
       "toc": "Sommaire du guide",
       "menu": "Menu",
       "important": "Règle sanitaire",
@@ -1532,13 +1532,13 @@
     },
     "hero": {
       "eyebrow": "Guide de prise en main",
-      "title": "D-AGROFERME",
+      "title": "D-FERME",
       "subtitle": "La plateforme intégrée de gestion d'exploitations d'élevage : bandes avicoles, cheptel individuel (bovins, ovins, caprins), sécurité sanitaire avec blocage anti-vente, et suivi des marges.",
-      "intro": "Ce guide vous présente la méthode pour exploiter tout le potentiel de D-AGROFERME : commencez par configurer vos bâtiments et enclos, enregistrez vos cohortes ou animaux individuels, assurez le suivi quotidien, et pilotez vos marges nettes."
+      "intro": "Ce guide vous présente la méthode pour exploiter tout le potentiel de D-FERME : commencez par configurer vos bâtiments et enclos, enregistrez vos cohortes ou animaux individuels, assurez le suivi quotidien, et pilotez vos marges nettes."
     },
     "overview": {
       "id": "apercu",
-      "title": "D-AGROFERME en 6 piliers",
+      "title": "D-FERME en 6 piliers",
       "lead": "Une approche rigoureuse pour maximiser le taux de survie, respecter les délais d'attente médicamenteux et rentabiliser chaque cycle de production.",
       "cards": [
         {
@@ -1653,7 +1653,7 @@
               {
                 "callout": {
                   "l": "Règle d'or de sécurité sanitaire",
-                  "x": "Tout traitement antibiotique ou antiparasitaire impose un délai de retrait obligatoire (ex: 7 à 14 jours). D-AGROFERME verrouille formellement toute tentative de vente de l'animal ou de la bande jusqu'à l'expiration complète de cette période."
+                  "x": "Tout traitement antibiotique ou antiparasitaire impose un délai de retrait obligatoire (ex: 7 à 14 jours). D-FERME verrouille formellement toute tentative de vente de l'animal ou de la bande jusqu'à l'expiration complète de cette période."
                 }
               }
             ]
@@ -1682,7 +1682,7 @@
             "menu": "Finances & Marges",
             "blocks": [
               {
-                "p": "D-AGROFERME cumule le coût des sujets à l'achat, l'ensemble des aliments consommés et les soins vétérinaires, puis les soustrait du chiffre d'affaires pour afficher la marge nette exacte par bande ou par lot."
+                "p": "D-FERME cumule le coût des sujets à l'achat, l'ensemble des aliments consommés et les soins vétérinaires, puis les soustrait du chiffre d'affaires pour afficher la marge nette exacte par bande ou par lot."
               }
             ]
           }
@@ -1710,7 +1710,7 @@
           {
             "callout": {
               "l": "Assistance Technique",
-              "x": "Notre équipe est joignable via le menu Aide & Support pour toute question sur la prise en main de votre logiciel D-AGROFERME."
+              "x": "Notre équipe est joignable via le menu Aide & Support pour toute question sur la prise en main de votre logiciel D-FERME."
             }
           }
         ]
@@ -1729,5 +1729,83 @@
     "tab_stocks": "Inventory & Warehouses",
     "tab_ventes": "Crop Sales",
     "tab_fourrage": "Forage & Livestock Synergy"
+  },
+  "elevage": {
+    "dashboard_header": {
+      "title": "Dashboard — D-Agroferme",
+      "subtitle": "Integrated agro-pastoral management: livestock, crop production, and finances.",
+      "btn_bandes": "Flocks & Poultry",
+      "btn_vegetal": "Crops & Fields",
+      "btn_suivi": "Daily Monitoring"
+    },
+    "health_alert": {
+      "title": "Sanitary Safety Alert: Active Withdrawal Periods",
+      "desc": "Animals are under medical withdrawal periods. Consumption and sale of their milk or meat are restricted to protect consumer health."
+    },
+    "animaux_page": {
+      "title": "Cattle & Ruminants (Ear-tag Tracking)",
+      "subtitle": "Individual traceability: pedigree, lactation, weight gain, and health treatments.",
+      "new_animal": "Register New Animal",
+      "demo_notice": "Demonstration data: dairy cattle and Sahel Ladoum elite rams."
+    },
+    "dashboard_kpi": {
+      "poultry": "Poultry & Active Flocks",
+      "poultry_sub": "Broilers & layer hens",
+      "cattle": "Cattle & Small Ruminants",
+      "cattle_sub": "Individual ear-tag tracking",
+      "crops": "Crops & Parcels",
+      "crops_sub": "Plot management & harvests",
+      "dairy": "Milk Collection",
+      "dairy_sub": "Daily milking production",
+      "health": "Health & Withdrawal Delay",
+      "health_active": "Active withdrawal delay",
+      "health_ok": "No animals under restriction"
+    }
+  },
+  "landing_ferme": {
+    "brand": "D-FERME",
+    "nav": {
+      "species": "Species & Livestock",
+      "pricing": "Plans & Pricing",
+      "guide": "User Guide",
+      "demo": "Live Demo",
+      "contact": "Contact",
+      "login": "Sign In",
+      "subscribe": "Subscribe"
+    },
+    "hero": {
+      "badge": "Integrated Agro-Pastoral Platform",
+      "title_1": "Drive the performance and profitability of your ",
+      "title_highlight": "Integrated Farm",
+      "desc": "Multi-species livestock (broilers, layers, dairy & beef cattle, sheep) and integrated crop production (vegetables, fruit orchards, forage). Track livestock, harvests, inventories and margins in real time.",
+      "cta_start": "Start Now",
+      "cta_demo": "Explore Live Demo"
+    },
+    "pillars": {
+      "poultry_title": "Poultry (Meat & Eggs)",
+      "poultry_desc": "Flock management: laying rates, egg collection, periodic weighing, feed conversion ratio (FCR), and mortality tracking.",
+      "cattle_title": "Cattle (Dairy & Beef)",
+      "cattle_desc": "Individual tracking by ear tag: daily milking volume, weighing, breeding cycles, and feed rations.",
+      "health_title": "Biosecurity & Withdrawal Periods",
+      "health_desc": "Automated calculation of post-treatment withdrawal delays. Visual lockout preventing the sale of animals under medication.",
+      "finance_title": "Margins & Profitability",
+      "finance_desc": "Automated cost accounting per flock and individual animal: cost per kg, feed & medicine expenditure, and net operating profit."
+    },
+    "pricing": {
+      "title": "Tailored Plans for Every Producer",
+      "desc": "Grow your agricultural enterprise with flexible, commitment-free subscriptions.",
+      "month": "FCFA / mo",
+      "standard_title": "Standard",
+      "standard_desc": "Ideal for starting a single livestock or farming workshop",
+      "standard_btn": "Select Standard",
+      "medium_title": "Medium",
+      "medium_badge": "Recommended",
+      "medium_desc": "For expanding farms and diversified production",
+      "medium_btn": "Select Medium",
+      "premium_title": "Premium",
+      "premium_desc": "Full financial & analytical management",
+      "premium_btn": "Select Premium"
+    },
+    "footer": "D-Ferme — A solution from DEMBA SOLUTION suite. All rights reserved."
   }
 }

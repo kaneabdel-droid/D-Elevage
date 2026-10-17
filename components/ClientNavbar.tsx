@@ -8,6 +8,9 @@ import LanguageSelector from '@/components/LanguageSelector'
 export default function ClientNavbar({ dict, currentLang }: { dict?: any, currentLang: string }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
+  const nav = dict?.landing_ferme?.nav || {}
+  const brandName = dict?.landing_ferme?.brand || 'D-FERME'
+
   return (
     <header className="sticky top-0 z-50 w-full border-b border-surface-border bg-background/85 backdrop-blur-md">
       {/* Barre supérieure discrète vers Demba Solution */}
@@ -29,14 +32,14 @@ export default function ClientNavbar({ dict, currentLang }: { dict?: any, curren
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between gap-4">
-          {/* Logo de marque D-AGROFERME */}
+          {/* Logo de marque D-FERME */}
           <Link href="/" className="flex items-center gap-2.5 shrink-0">
             <span className="w-9 h-9 rounded-xl bg-primary/10 flex items-center justify-center text-primary shrink-0">
               <Bird className="w-5 h-5" />
             </span>
             <div className="flex flex-col">
               <span className="text-lg sm:text-xl font-bold font-heading text-primary leading-tight whitespace-nowrap">
-                D-AGROFERME
+                {brandName}
               </span>
               <span className="text-[10px] text-foreground-muted -mt-0.5 tracking-wider uppercase font-semibold hidden sm:inline whitespace-nowrap">
                 Demba Solution
@@ -50,31 +53,31 @@ export default function ClientNavbar({ dict, currentLang }: { dict?: any, curren
               href="/#especes"
               className="text-sm font-medium text-foreground-muted hover:text-primary transition-colors whitespace-nowrap"
             >
-              Espèces & Élevages
+              {nav.species || 'Espèces & Élevages'}
             </Link>
             <Link
               href="/tarifs"
               className="text-sm font-medium text-foreground-muted hover:text-primary transition-colors whitespace-nowrap"
             >
-              Tarifs & Forfaits
+              {nav.pricing || 'Tarifs & Forfaits'}
             </Link>
             <Link
               href="/guide"
               className="text-sm font-medium text-foreground-muted hover:text-primary transition-colors whitespace-nowrap"
             >
-              Guide d&apos;utilisation
+              {nav.guide || "Guide d'utilisation"}
             </Link>
             <Link
               href="/demo"
               className="text-sm font-medium text-primary font-semibold hover:text-primary-hover transition-colors inline-flex items-center gap-1 whitespace-nowrap"
             >
-              <Sparkles className="w-3.5 h-3.5" /> Démo en direct
+              <Sparkles className="w-3.5 h-3.5" /> {nav.demo || 'Démo en direct'}
             </Link>
             <Link
               href="/#contact"
               className="text-sm font-medium text-foreground-muted hover:text-primary transition-colors whitespace-nowrap"
             >
-              Contact
+              {nav.contact || 'Contact'}
             </Link>
           </nav>
 
@@ -85,13 +88,13 @@ export default function ClientNavbar({ dict, currentLang }: { dict?: any, curren
               href="/login"
               className="rounded-full border border-surface-border px-3.5 py-1.5 text-sm font-semibold text-foreground hover:border-primary hover:text-primary transition-all whitespace-nowrap"
             >
-              Connexion
+              {nav.login || 'Connexion'}
             </Link>
             <Link
               href="/signup?plan=medium&action=abonnement"
               className="hidden sm:inline-flex rounded-full bg-primary px-4 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-primary-hover transition-all whitespace-nowrap"
             >
-              S&apos;abonner
+              {nav.subscribe || "S'abonner"}
             </Link>
             <button
               type="button"
@@ -119,35 +122,35 @@ export default function ClientNavbar({ dict, currentLang }: { dict?: any, curren
             onClick={() => setMobileMenuOpen(false)}
             className="block text-base font-medium text-foreground hover:text-primary"
           >
-            Espèces & Élevages
+            {nav.species || 'Espèces & Élevages'}
           </Link>
           <Link
             href="/tarifs"
             onClick={() => setMobileMenuOpen(false)}
             className="block text-base font-medium text-foreground hover:text-primary"
           >
-            Tarifs & Forfaits
+            {nav.pricing || 'Tarifs & Forfaits'}
           </Link>
           <Link
             href="/guide"
             onClick={() => setMobileMenuOpen(false)}
             className="block text-base font-medium text-foreground hover:text-primary"
           >
-            Guide d&apos;utilisation
+            {nav.guide || "Guide d'utilisation"}
           </Link>
           <Link
             href="/demo"
             onClick={() => setMobileMenuOpen(false)}
             className="block text-base font-medium text-primary font-semibold"
           >
-            Démo en direct
+            {nav.demo || 'Démo en direct'}
           </Link>
           <Link
             href="/#contact"
             onClick={() => setMobileMenuOpen(false)}
             className="block text-base font-medium text-foreground hover:text-primary"
           >
-            Contact
+            {nav.contact || 'Contact'}
           </Link>
           <div className="pt-3 border-t border-surface-border flex flex-col gap-2">
             <Link
@@ -155,14 +158,14 @@ export default function ClientNavbar({ dict, currentLang }: { dict?: any, curren
               onClick={() => setMobileMenuOpen(false)}
               className="w-full text-center py-2 rounded-xl border border-surface-border font-semibold text-sm"
             >
-              Connexion
+              {nav.login || 'Connexion'}
             </Link>
             <Link
               href="/signup?plan=medium&action=abonnement"
               onClick={() => setMobileMenuOpen(false)}
               className="w-full text-center py-2 rounded-xl bg-primary text-white font-semibold text-sm"
             >
-              S&apos;abonner
+              {nav.subscribe || "S'abonner"}
             </Link>
           </div>
         </div>

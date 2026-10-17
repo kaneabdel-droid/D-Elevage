@@ -4,9 +4,14 @@ import { Beef, ShieldAlert, CheckCircle2, Milk, Calendar, Sparkles } from 'lucid
 import CreerAnimalModal from './CreerAnimalModal'
 import { DEMO_ANIMAUX, DEMO_BATIMENTS, DEMO_ESPECES } from '@/lib/demo-data'
 
+import { getLocale, getDictionary } from '@/dictionaries'
+
 export default async function AnimauxPage() {
   const tenant = await getTenantContext()
   const supabase = await createClient()
+  const locale = await getLocale()
+  const dict = await getDictionary(locale)
+  const tAnimaux = dict.elevage?.animaux_page || {}
 
   const [
     { data: animaux },
@@ -32,10 +37,10 @@ export default async function AnimauxPage() {
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
           <h1 className="text-2xl font-bold font-heading text-foreground">
-            Bovins & Ruminants (Suivi par Boucle)
+            {tAnimaux.title || 'Bovins & Ruminants (Suivi par Boucle)'}
           </h1>
           <p className="text-sm text-foreground-muted mt-1">
-            Traçabilité individuelle : généalogie, lactation, pesées et suivi sanitaire.
+            {tAnimaux.subtitle || 'Traçabilité individuelle : généalogie, lactation, pesées et suivi sanitaire.'}
           </p>
         </div>
         <CreerAnimalModal
